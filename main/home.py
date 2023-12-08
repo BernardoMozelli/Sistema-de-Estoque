@@ -4,15 +4,15 @@ import customtkinter  as ctk
 from banco_conections.conexao import *
 from banco_conections.conexao_cad import validate_query
 from utils.layout.front import *
-import fornecedor
-from PIL import ImageTk,Image 
-
+from PIL import ImageTk,Image
+from menu_paginas.cadastro_fornecedor import cad_fornecedor
+from menu_paginas.cadastro_categoria import cad_categoria
 class Home(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
         self.title("Sistema de Inventário")
-        self.wm_iconbitmap(default="./imagens/logo_icone.ico")  # alterando o icone
+        self.wm_iconbitmap(default="C://sistema_estoque/imagens/logo_icone.ico")  # alterando o icone
         self.geometry("1000x550+250+70")
         self.resizable(False, False)
 
@@ -20,9 +20,9 @@ class Home(customtkinter.CTk):
         self.grid_columnconfigure(1, weight=1)
 
         # Inserindo as imagens que serão utilizadas
-        image_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "C:/Users/bernardomedeiros/Desktop/inventario - CTK/imagens")
+        image_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "C:/sistema_estoque/imagens")
         
-        self.background_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "background.jpg")), size=(1000, 550))
+        self.background_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "background2.jpg")), size=(1000, 550))
         self.background_image2 = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "background.jpg")), size=(1000, 550))
         self.image_icon_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "logo_transparent.png")), size=(20, 20))
         self.menu_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "menu.png")), size=(15, 16))
@@ -85,10 +85,10 @@ class Home(customtkinter.CTk):
         self.home_frame.grid_columnconfigure(0, weight=1)
         
         # Inserindo imagem de fundo
-        label_logo = customtkinter.CTkLabel(self.home_frame,
+        label_logoH = customtkinter.CTkLabel(self.home_frame,
                                     text="",
                                     image=self.background_image)
-        label_logo.pack()
+        label_logoH.pack()
 
         # criando o frame cadastro
         self.cadastro_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
@@ -105,39 +105,52 @@ class Home(customtkinter.CTk):
                                                                         width=170,
                                                                         height=35,
                                                                         font=('Poppins Bold', 14),
-                                                                        hover_color=co2,
-                                                                        bg_color=co4,
-                                                                        fg_color=co4)
-        self.cadastro_frame_Button_Fornecedor.place(x=360, y=170)
+                                                                        hover_color=co4,
+                                                                        border_width=2,
+                                                                        border_color=co0,
+                                                                        bg_color=co0,
+                                                                        fg_color=co0,
+                                                                        cursor='hand2')
+        self.cadastro_frame_Button_Fornecedor.place(x=387, y=140)
         
-        #self.cadastro_frame_Button_Fornecedor.configure(command=chama_fornecedor)
+        self.cadastro_frame_Button_Fornecedor.configure(command = cad_fornecedor)
         
         self.cadastro_frame_Button_Categoria = customtkinter.CTkButton(self.cadastro_frame, text="CATEGORIA",
                                                                       width=170,
                                                                       height=35,
                                                                       font=('Poppins Bold', 14),
-                                                                      hover_color=co2,
-                                                                      bg_color=co4,
-                                                                      fg_color=co4)
-        self.cadastro_frame_Button_Categoria.place(x=360, y=240)
+                                                                      hover_color=co4,
+                                                                      border_width=2,
+                                                                      border_color=co0,
+                                                                      bg_color=co0,
+                                                                      fg_color=co0,
+                                                                      cursor='hand2')
+        self.cadastro_frame_Button_Categoria.place(x=387, y=210)
+        self.cadastro_frame_Button_Categoria.configure(command = cad_categoria)
 
         self.cadastro_frame_Button_Sub_Categoria = customtkinter.CTkButton(self.cadastro_frame, text="SUB-CATEGORIA",
                                                                           width=170,
                                                                           height=35,
                                                                           font=('Poppins Bold', 14),
-                                                                          hover_color=co2,
-                                                                          bg_color=co4,
-                                                                          fg_color=co4)
-        self.cadastro_frame_Button_Sub_Categoria.place(x=360, y=310)
+                                                                          hover_color=co4,
+                                                                          border_width=2,
+                                                                          border_color=co0,
+                                                                          bg_color=co0,
+                                                                          fg_color=co0,
+                                                                          cursor='hand2')
+        self.cadastro_frame_Button_Sub_Categoria.place(x=387, y=280)
 
         self.cadastro_frame_Button_Fabricante = customtkinter.CTkButton(self.cadastro_frame, text="FABRICANTE",
                                                                        width=170,
                                                                        height=35,
                                                                        font=('Poppins Bold', 14),
-                                                                       hover_color=co2,
-                                                                       bg_color=co4,
-                                                                       fg_color=co4)
-        self.cadastro_frame_Button_Fabricante.place(x=360, y=380)
+                                                                       hover_color=co4,
+                                                                        border_width=2,
+                                                                        border_color=co0,
+                                                                        bg_color=co0,
+                                                                        fg_color=co0,
+                                                                        cursor='hand2')
+        self.cadastro_frame_Button_Fabricante.place(x=387, y=350)
        
 
         # criando o frame exclusão

@@ -145,20 +145,25 @@ def msg_reset():
                                   fade_in_duration=(2))
 msg_reset
 
-def msg_cepincorreto():
-  global show_avisoCEP
-  show_avisoCEP = CTkMessagebox( 
-        title="Consulta de CEP - Aviso",
-        message="Não foi possível obter informações para o CEP informado",
+def msg_cnpjincorreto():
+  global show_avisoCNPJ
+  show_avisoCNPJ = CTkMessagebox( 
+        title="Consulta de CNPJ - Aviso",
+        message="O número de cnpj informado está incorreto. Verifique os números fornecidos e tente novamente!!!",
         icon="warning", option_1="Ok",
         fade_in_duration=(2))
-  resposta = show_avisoCEP.get()
+msg_cnpjincorreto
 
-  if resposta == "Ok":
-   global show_avisoCEP2
-   show_avisoCEP2 = CTkMessagebox(
-        title="Consulta de CEP - Aviso",
-        message = "Verifique o CEP informado e tente novamente!!!",
-        icon="warning", option_1="Ok",
+def msg_sucessoCadFornecedor():
+ global show_sucesso_fornecedor
+ show_sucesso_fornecedor = CTkMessagebox(
+        title="Cadastro de fornecedor",
+        message="Cadastro realizado com sucesso",
+        icon="check", option_1="Ok",
         fade_in_duration=(2))
-msg_cepincorreto
+ resposta = show_sucesso_fornecedor.get()
+ 
+ if resposta == "Ok":
+    import home
+    home
+msg_sucessoCadFornecedor
