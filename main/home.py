@@ -7,6 +7,7 @@ from utils.layout.front import *
 from PIL import ImageTk,Image
 from menu_paginas.cadastro_fornecedor import cad_fornecedor
 from menu_paginas.cadastro_categoria import cad_categoria
+from menu_paginas.cadastro_subcategoria import cad_subcategoria
 class Home(customtkinter.CTk):
     def __init__(self):
         super().__init__()
@@ -139,6 +140,7 @@ class Home(customtkinter.CTk):
                                                                           fg_color=co0,
                                                                           cursor='hand2')
         self.cadastro_frame_Button_Sub_Categoria.place(x=387, y=280)
+        self.cadastro_frame_Button_Sub_Categoria.configure(command = cad_subcategoria)
 
         self.cadastro_frame_Button_Fabricante = customtkinter.CTkButton(self.cadastro_frame, text="FABRICANTE",
                                                                        width=170,

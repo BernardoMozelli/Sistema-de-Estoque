@@ -6,6 +6,7 @@ import os
 from banco_conections.conexao import *
 from banco_conections.conexao_forncedores import query_fornecedor
 from PIL import ImageTk, Image
+from banco_conections.conexao_categorias import query_categoria
 
 def cad_categoria():
     janela_categoria = customtkinter.CTkToplevel()
@@ -29,7 +30,71 @@ def cad_categoria():
                                           text="",
                                           image=background_image)
     label_background.pack()
+    
+        
+    label_combobox = customtkinter.CTkLabel(master=janela_categoria,
+                                             text="SEGMENTO",
+                                             font=('Poppins bold', 13),
+                                             width=40,
+                                             height=20,
+                                             fg_color=co4,
+                                             bg_color="transparent")
+    label_combobox.place(x=330, y=150, anchor=tkinter.CENTER)
 
+    #Caixa para selecionar segmento
+    global var_combobox
+    combobox = customtkinter.CTkOptionMenu(master=janela_categoria,
+                                       values=["Alimentos", "Bebida", "Papelaria", "Informatica", "Cosmeticos", "Outros"])
+    combobox.configure(fg_color=co0, width=180, height=30)
+    combobox.set("Informatica")  # setando valor inicial
+    combobox.place(x=294, y=168)
+    var_combobox = combobox.get()
+    
+    label_categoria = customtkinter.CTkLabel(master=janela_categoria,
+                                             text="CATEGORIA",
+                                             font=('Poppins bold', 13),
+                                             width=40,
+                                             height=20,
+                                             fg_color=co4,
+                                             bg_color="transparent")
+    label_categoria.place(x=600, y=150, anchor=tkinter.CENTER)
+    
+    # Criando e configurando a entry categoria
+    entry_categoria = customtkinter.CTkEntry(master=janela_categoria,
+                                        width=250,
+                                        height=30,
+                                        font=('Century gothic', 13),
+                                        fg_color="transparent",
+                                        bg_color="transparent",
+                                        border_color=co0,
+                                        placeholder_text='Insira o nome da categoria',
+                                        justify='center')
+    entry_categoria.place(x=687, y=183, anchor=tkinter.CENTER)
+
+    def armazenar_categoria():
+        
+        global var_categoria
+        var_categoria = entry_categoria.get()
+    armazenar_categoria
+    
+    def clean_entryc():
+        entry_categoria.delete(0, "end")
+    clean_entryc
+    
+    # Criando e configurando o botão cadastrar
+    button_cadastrar = customtkinter.CTkButton(master=janela_categoria, text="CADASTRAR",
+                                            width=15,
+                                            height=15,
+                                            font=('Poppins Bold', 15),
+                                            fg_color=co4,
+                                            hover_color=co2,
+                                            bg_color=co4,
+                                            cursor='hand2')
+
+    button_cadastrar.place(x=520, y=270, anchor=tkinter.CENTER)
+
+    # Cadastrando as infomações do fornecedor no banco de dados
+    button_cadastrar.configure(command=lambda:[armazenar_categoria(), query_categoria(), clean_entryc()])
 
     janela_categoria.mainloop()
     
