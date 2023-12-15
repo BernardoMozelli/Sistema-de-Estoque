@@ -112,7 +112,7 @@ class Home(customtkinter.CTk):
                                                                         bg_color=co0,
                                                                         fg_color=co0,
                                                                         cursor='hand2')
-        self.cadastro_frame_Button_Fornecedor.place(x=387, y=140)
+        self.cadastro_frame_Button_Fornecedor.place(x=387, y=170)
         
         self.cadastro_frame_Button_Fornecedor.configure(command = cad_fornecedor)
         
@@ -126,7 +126,7 @@ class Home(customtkinter.CTk):
                                                                       bg_color=co0,
                                                                       fg_color=co0,
                                                                       cursor='hand2')
-        self.cadastro_frame_Button_Categoria.place(x=387, y=210)
+        self.cadastro_frame_Button_Categoria.place(x=387, y=260)
         self.cadastro_frame_Button_Categoria.configure(command = cad_categoria)
 
         self.cadastro_frame_Button_Sub_Categoria = customtkinter.CTkButton(self.cadastro_frame, text="SUB-CATEGORIA",
@@ -139,20 +139,8 @@ class Home(customtkinter.CTk):
                                                                           bg_color=co0,
                                                                           fg_color=co0,
                                                                           cursor='hand2')
-        self.cadastro_frame_Button_Sub_Categoria.place(x=387, y=280)
+        self.cadastro_frame_Button_Sub_Categoria.place(x=387, y=350)
         self.cadastro_frame_Button_Sub_Categoria.configure(command = cad_subcategoria)
-
-        self.cadastro_frame_Button_Fabricante = customtkinter.CTkButton(self.cadastro_frame, text="FABRICANTE",
-                                                                       width=170,
-                                                                       height=35,
-                                                                       font=('Poppins Bold', 14),
-                                                                       hover_color=co4,
-                                                                        border_width=2,
-                                                                        border_color=co0,
-                                                                        bg_color=co0,
-                                                                        fg_color=co0,
-                                                                        cursor='hand2')
-        self.cadastro_frame_Button_Fabricante.place(x=387, y=350)
        
 
         # criando o frame exclusão

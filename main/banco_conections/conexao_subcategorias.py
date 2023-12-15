@@ -29,3 +29,35 @@ cursor.execute(sql)
 result_categoria = cursor.fetchall() # resultado da query
 
 var_resultC = [result_categoria[0] for result_categoria in result_categoria]
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def query_subcategoria():
+    from menu_paginas.cadastro_subcategoria import var_subcategoria
+    cursor = con.cursor()
+    query_sc = (("SELECT nome FROM cadastro_subcategoria WHERE nome ='{}'".format(var_subcategoria)))
+    cursor.execute(query_sc)
+    result = cursor.fetchall()
+ 
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    # Verifica se o retorno contém alguma linha
+    if len(result) != 0:
+        msg_aviso3()
+    else:
+     
+     #Convertendo variaveis do formato listas em String. 
+     # Isso deve ser feito para que os valores possam ser inseridos na tabela MySql
+     
+     string_segmento = " ".join(var_result)
+     string_categoria = " ".join(var_resultC)
+        
+     #Insere as informações no banco de dados
+     query_cad_subcategoria = ("INSERT INTO cadastro_subcategoria (segmento, categoria, nome) VALUES (%s, %s, %s)")
+     val = (string_segmento, string_categoria, var_subcategoria)
+     cursor.execute(query_cad_subcategoria, val)
+     con.commit()
+
+     msg_sucessoCadFornecedor()
+     
+query_subcategoria
