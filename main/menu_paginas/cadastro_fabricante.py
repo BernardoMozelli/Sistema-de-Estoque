@@ -7,19 +7,19 @@ import requests
 import json
 from string import ascii_letters
 from banco_conections.conexao import *
-from banco_conections.conexao_fornecedores import query_fornecedor
+from banco_conections.conexao_fabricante import query_fabricante
 from PIL import ImageTk, Image
 
 
-def cad_fornecedor():
-    janela_fornecedor = customtkinter.CTkToplevel()
-    janela_fornecedor.attributes("-topmost", True)
-    janela_fornecedor.after(200, lambda: janela_fornecedor.iconbitmap("./imagens/logo_icone.ico")) # alterando o icone da janela
-    janela_fornecedor.title("Cadastro de Fornecedor")
-    janela_fornecedor.geometry("1000x550+250+70")
-    janela_fornecedor.resizable(False, False)
-    janela_fornecedor.grid_rowconfigure(0, weight=1)
-    janela_fornecedor.grid_columnconfigure(1, weight=1)
+def cad_fabricante():
+    janela_fabricante = customtkinter.CTkToplevel()
+    janela_fabricante.attributes("-topmost", True)
+    janela_fabricante.after(200, lambda: janela_fabricante.iconbitmap("./imagens/logo_icone.ico")) # alterando o icone da janela
+    janela_fabricante.title("Cadastro de Fabricante")
+    janela_fabricante.geometry("1000x550+250+70")
+    janela_fabricante.resizable(False, False)
+    janela_fabricante.grid_rowconfigure(0, weight=1)
+    janela_fabricante.grid_columnconfigure(1, weight=1)
 
     # Inserindo as imagens que serão utilizadas
     image_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "C:/sistema_estoque/imagens")
@@ -32,16 +32,16 @@ def cad_fornecedor():
     os.path.join(image_path, "consulta_cnpj.png")), size=(17, 17))
     
     vetor_clean = customtkinter.CTkImage(dark_image=Image.open(
-    os.path.join(image_path, "clean_entry.png")), size=(17, 17))
+    os.path.join(image_path, "clean_entry.png")), size=(19, 19))
 
     # Inserindo imagem de fundo
-    label_background = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_background = customtkinter.CTkLabel(master=janela_fabricante,
                                           text="",
                                           image=background_image)
     label_background.pack()
 
     # Criando e configurando a label CNPJ
-    label_cnpj = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_cnpj = customtkinter.CTkLabel(master=janela_fabricante,
                                     text="CNPJ",
                                     font=('Poppins bold', 12),
                                     width=40,
@@ -52,7 +52,7 @@ def cad_fornecedor():
 
     # Criando e configurando a entry CNPJ
     global entry_cnpj
-    entry_cnpj = customtkinter.CTkEntry(master=janela_fornecedor,
+    entry_cnpj = customtkinter.CTkEntry(master=janela_fabricante,
                                     width=250,
                                     height=20,
                                     font=('Century gothic', 13),
@@ -82,7 +82,7 @@ def cad_fornecedor():
     entry_cnpj.bind('<KeyRelease>', mascara_cnpj)
     # -----------------------------------------------------------------
     # Criando e configurando a label nome fantasia
-    label_nome = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_nome = customtkinter.CTkLabel(master=janela_fabricante,
                                     text="NOME FANTASIA",
                                     font=('Poppins bold', 12),
                                     width=40,
@@ -92,7 +92,7 @@ def cad_fornecedor():
     label_nome.place(x=635, y=76.5, anchor=tkinter.CENTER)
 
     # Criando e configurando a entry nome fantasia
-    entry_nome = customtkinter.CTkEntry(master=janela_fornecedor,
+    entry_nome = customtkinter.CTkEntry(master=janela_fabricante,
                                     width=250,
                                     height=20,
                                     font=('Century gothic', 13),
@@ -107,7 +107,7 @@ def cad_fornecedor():
     # -----------------------------------------------------------------
 
     # Criando e configurando a label razão social
-    label_razao = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_razao = customtkinter.CTkLabel(master=janela_fabricante,
                                      text="RAZÃO SOCIAL",
                                      font=('Poppins bold', 12),
                                      width=40,
@@ -117,7 +117,7 @@ def cad_fornecedor():
     label_razao.place(x=209, y=164, anchor=tkinter.CENTER)
 
     # Criando e configurando a entry razão social
-    entry_razao = customtkinter.CTkEntry(master=janela_fornecedor,
+    entry_razao = customtkinter.CTkEntry(master=janela_fabricante,
                                      width=250,
                                      height=20,
                                      font=('Century gothic', 13),
@@ -132,7 +132,7 @@ def cad_fornecedor():
 
     # -----------------------------------------------------------------
     # Criando e configurando a label CEP
-    label_cep = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_cep = customtkinter.CTkLabel(master=janela_fabricante,
                                    text="CEP",
                                    font=('Poppins bold', 12),
                                    width=40,
@@ -143,7 +143,7 @@ def cad_fornecedor():
 
     # Criando e configurando a entry cep
     global entry_cep
-    entry_cep = customtkinter.CTkEntry(master=janela_fornecedor,
+    entry_cep = customtkinter.CTkEntry(master=janela_fabricante,
                                    width=250,
                                    height=20,
                                    font=('Century gothic', 13),
@@ -168,7 +168,7 @@ def cad_fornecedor():
 
     # -----------------------------------------------------------------
     # Criando e configurando a label logradouro
-    label_logradouro = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_logradouro = customtkinter.CTkLabel(master=janela_fabricante,
                                           text="ENDEREÇO",
                                           font=('Poppins bold', 12),
                                           width=40,
@@ -178,7 +178,7 @@ def cad_fornecedor():
     label_logradouro.place(x=196, y=240, anchor=tkinter.CENTER)
 
     # Criando e configurando a entry logradouro
-    entry_logradouro = customtkinter.CTkEntry(master=janela_fornecedor,
+    entry_logradouro = customtkinter.CTkEntry(master=janela_fabricante,
                                           width=250,
                                           height=20,
                                           font=('Century gothic', 13),
@@ -191,7 +191,7 @@ def cad_fornecedor():
     # -----------------------------------------------------------------
 
     # Criando e configurando a label logradouro
-    label_complemento = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_complemento = customtkinter.CTkLabel(master=janela_fabricante,
                                            text="COMPLEMENTO",
                                            font=('Poppins bold', 12),
                                            width=40,
@@ -201,7 +201,7 @@ def cad_fornecedor():
     label_complemento.place(x=630, y=242, anchor=tkinter.CENTER)
 
     # Criando e configurando a entry logradouro
-    entry_complemento = customtkinter.CTkEntry(master=janela_fornecedor,
+    entry_complemento = customtkinter.CTkEntry(master=janela_fabricante,
                                            width=250,
                                            height=20,
                                            font=('Century gothic', 13),
@@ -213,7 +213,7 @@ def cad_fornecedor():
     entry_complemento.place(x=710, y=272, anchor=tkinter.CENTER)
     # -----------------------------------------------------------------
     # Criando e configurando a label bairro
-    label_bairro = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_bairro = customtkinter.CTkLabel(master=janela_fabricante,
                                       text="BAIRRO",
                                       font=('Poppins bold', 12),
                                       width=40,
@@ -223,7 +223,7 @@ def cad_fornecedor():
     label_bairro.place(x=189, y=310, anchor=tkinter.CENTER)
 
     # Criando e configurando a entry bairro
-    entry_bairro = customtkinter.CTkEntry(master=janela_fornecedor,
+    entry_bairro = customtkinter.CTkEntry(master=janela_fabricante,
                                       width=250,
                                       height=20,
                                       font=('Century gothic', 13),
@@ -235,7 +235,7 @@ def cad_fornecedor():
     entry_bairro.place(x=290, y=340, anchor=tkinter.CENTER)
     # -----------------------------------------------------------------
     # Criando e configurando a label bairro
-    label_cidade_estado = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_cidade_estado = customtkinter.CTkLabel(master=janela_fabricante,
                                              text="CIDADE - ESTADO",
                                              font=('Poppins bold', 12),
                                              width=40,
@@ -245,7 +245,7 @@ def cad_fornecedor():
     label_cidade_estado.place(x=639, y=313, anchor=tkinter.CENTER)
 
     # Criando e configurando a entry bairro
-    entry_cidade_estado = customtkinter.CTkEntry(master=janela_fornecedor,
+    entry_cidade_estado = customtkinter.CTkEntry(master=janela_fabricante,
                                              width=250,
                                              height=20,
                                              font=('Century gothic', 13),
@@ -257,7 +257,7 @@ def cad_fornecedor():
     entry_cidade_estado.place(x=710, y=342, anchor=tkinter.CENTER)
     # -----------------------------------------------------------------
     # Criando e configurando a label status
-    label_status = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_status = customtkinter.CTkLabel(master=janela_fabricante,
                                       text="STATUS",
                                       font=('Poppins bold', 12),
                                       width=40,
@@ -267,7 +267,7 @@ def cad_fornecedor():
     label_status.place(x=189, y=385, anchor=tkinter.CENTER)
 
     # Criando e configurando a entry status
-    entry_status = customtkinter.CTkEntry(master=janela_fornecedor,
+    entry_status = customtkinter.CTkEntry(master=janela_fabricante,
                                       width=250,
                                       height=20,
                                       font=('Century gothic', 13),
@@ -279,7 +279,7 @@ def cad_fornecedor():
     entry_status.place(x=292, y=415, anchor=tkinter.CENTER)
     # -----------------------------------------------------------------
     # Criando e configurando a label telefone
-    label_telefone = customtkinter.CTkLabel(master=janela_fornecedor,
+    label_telefone = customtkinter.CTkLabel(master=janela_fabricante,
                                         text="TELEFONE",
                                         font=('Poppins bold', 12),
                                         width=40,
@@ -289,7 +289,7 @@ def cad_fornecedor():
     label_telefone.place(x=613, y=390, anchor=tkinter.CENTER)
 
     # Criando e configurando a entry telefone
-    entry_telefone = customtkinter.CTkEntry(master=janela_fornecedor,
+    entry_telefone = customtkinter.CTkEntry(master=janela_fabricante,
                                         width=250,
                                         height=20,
                                         font=('Century gothic', 13),
@@ -368,7 +368,7 @@ def cad_fornecedor():
 
     # ---------------------------------------------------------------------------------------
     # Criando e configurando o botão consultar
-    button_consultar = customtkinter.CTkButton(master=janela_fornecedor, text="",
+    button_consultar = customtkinter.CTkButton(master=janela_fabricante, text="",
                                            width=15,
                                            height=15,
                                            font=('Poppins Bold', 10),
@@ -384,7 +384,7 @@ def cad_fornecedor():
     
     # ---------------------------------------------------------------------------------------
 
-    button_clean = customtkinter.CTkButton(master=janela_fornecedor, text="",
+    button_clean = customtkinter.CTkButton(master=janela_fabricante, text="",
                                            width=15,
                                            height=15,
                                            font=('Poppins Bold', 10),
@@ -400,8 +400,9 @@ def cad_fornecedor():
     button_clean.configure(command=cleaning_entry)
 
     # ---------------------------------------------------------------------------------------
+    
     # Criando e configurando o botão consultar
-    button_cadastrarF = customtkinter.CTkButton(master=janela_fornecedor, text="CADASTRAR",
+    button_cadastrarF = customtkinter.CTkButton(master=janela_fabricante, text="CADASTRAR",
                                             width=15,
                                             height=15,
                                             font=('Poppins Bold', 17),
@@ -413,9 +414,9 @@ def cad_fornecedor():
     button_cadastrarF.place(x=501, y=475, anchor=tkinter.CENTER)
 
     # Cadastrando as infomações do fornecedor no banco de dados
-    button_cadastrarF.configure(command=lambda:[query_fornecedor(), cleaning_entry()])
+    button_cadastrarF.configure(command=lambda:[query_fabricante(), cleaning_entry()])
 
 
-    janela_fornecedor.mainloop()
+    janela_fabricante.mainloop()
     
-cad_fornecedor
+cad_fabricante

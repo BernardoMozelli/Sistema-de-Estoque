@@ -6,8 +6,10 @@ from banco_conections.conexao_cad import validate_query
 from utils.layout.front import *
 from PIL import ImageTk,Image
 from menu_paginas.cadastro_fornecedor import cad_fornecedor
+from menu_paginas.cadastro_fabricante import cad_fabricante
 from menu_paginas.cadastro_categoria import cad_categoria
 from menu_paginas.cadastro_subcategoria import cad_subcategoria
+from menu_paginas.estoque_entrada import entrada_estoque
 class Home(customtkinter.CTk):
     def __init__(self):
         super().__init__()
@@ -58,12 +60,6 @@ class Home(customtkinter.CTk):
                                                       image=self.cadastro_image, anchor="w", command=self.cadastro_button_event)
         self.cadastro_button.grid(row=2, column=0, sticky="ew")
         
-
-        self.exclusao_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Exclusão",
-                                                      fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
-                                                      image=self.exclusao_image, anchor="w", command=self.exclusao_button_event)
-        self.exclusao_button.grid(row=3, column=0, sticky="ew")
-        
         
         self.estoque_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Estoque",
                                                       fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
@@ -112,9 +108,23 @@ class Home(customtkinter.CTk):
                                                                         bg_color=co0,
                                                                         fg_color=co0,
                                                                         cursor='hand2')
-        self.cadastro_frame_Button_Fornecedor.place(x=387, y=140)
+        self.cadastro_frame_Button_Fornecedor.place(x=387, y=170)
         
         self.cadastro_frame_Button_Fornecedor.configure(command = cad_fornecedor)
+        
+        self.cadastro_frame_Button_Fabricante = customtkinter.CTkButton(self.cadastro_frame, text="FABRICANTE",
+                                                                        width=170,
+                                                                        height=35,
+                                                                        font=('Poppins Bold', 14),
+                                                                        hover_color=co4,
+                                                                        border_width=2,
+                                                                        border_color=co0,
+                                                                        bg_color=co0,
+                                                                        fg_color=co0,
+                                                                        cursor='hand2')
+        self.cadastro_frame_Button_Fabricante.place(x=387, y=245)
+        
+        self.cadastro_frame_Button_Fabricante.configure(command = cad_fabricante)
         
         self.cadastro_frame_Button_Categoria = customtkinter.CTkButton(self.cadastro_frame, text="CATEGORIA",
                                                                       width=170,
@@ -126,7 +136,7 @@ class Home(customtkinter.CTk):
                                                                       bg_color=co0,
                                                                       fg_color=co0,
                                                                       cursor='hand2')
-        self.cadastro_frame_Button_Categoria.place(x=387, y=210)
+        self.cadastro_frame_Button_Categoria.place(x=387, y=320)
         self.cadastro_frame_Button_Categoria.configure(command = cad_categoria)
 
         self.cadastro_frame_Button_Sub_Categoria = customtkinter.CTkButton(self.cadastro_frame, text="SUB-CATEGORIA",
@@ -139,27 +149,59 @@ class Home(customtkinter.CTk):
                                                                           bg_color=co0,
                                                                           fg_color=co0,
                                                                           cursor='hand2')
-        self.cadastro_frame_Button_Sub_Categoria.place(x=387, y=280)
+        self.cadastro_frame_Button_Sub_Categoria.place(x=387, y=392)
         self.cadastro_frame_Button_Sub_Categoria.configure(command = cad_subcategoria)
-
-        self.cadastro_frame_Button_Fabricante = customtkinter.CTkButton(self.cadastro_frame, text="FABRICANTE",
-                                                                       width=170,
-                                                                       height=35,
-                                                                       font=('Poppins Bold', 14),
-                                                                       hover_color=co4,
+        
+        # criando o frame estoque
+        self.estoque_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
+        
+        # Inserindo imagem de fundo
+        label_logo = customtkinter.CTkLabel(self.estoque_frame,
+                                    text="",
+                                    image=self.background_image)
+        label_logo.pack()
+        
+        #Criando os botões no frame estoque
+        self.estoque_frame_Button_Entrada = customtkinter.CTkButton(self.estoque_frame, text="ENTRADA",
+                                                                        width=170,
+                                                                        height=35,
+                                                                        font=('Poppins Bold', 14),
+                                                                        hover_color=co4,
                                                                         border_width=2,
                                                                         border_color=co0,
                                                                         bg_color=co0,
                                                                         fg_color=co0,
                                                                         cursor='hand2')
-        self.cadastro_frame_Button_Fabricante.place(x=387, y=350)
-       
-
-        # criando o frame exclusão
-        self.exclusao_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
+        self.estoque_frame_Button_Entrada.place(x=387, y=170)
+        self.estoque_frame_Button_Entrada.configure(command = entrada_estoque)
         
-        # criando o frame estoque
-        self.estoque_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
+        #self.estoque_frame_Button_Entrada.configure(command = )
+        
+        self.estoque_frame_Button_Saida = customtkinter.CTkButton(self.estoque_frame, text="SAÍDA",
+                                                                      width=170,
+                                                                      height=35,
+                                                                      font=('Poppins Bold', 14),
+                                                                      hover_color=co4,
+                                                                      border_width=2,
+                                                                      border_color=co0,
+                                                                      bg_color=co0,
+                                                                      fg_color=co0,
+                                                                      cursor='hand2')
+        self.estoque_frame_Button_Saida.place(x=387, y=260)
+        #self.estoque_frame_Button_Saida.configure(command = )
+
+        self.estoque_frame_Button_Exclusao = customtkinter.CTkButton(self.estoque_frame, text="EXCLUSÃO",
+                                                                          width=170,
+                                                                          height=35,
+                                                                          font=('Poppins Bold', 14),
+                                                                          hover_color=co4,
+                                                                          border_width=2,
+                                                                          border_color=co0,
+                                                                          bg_color=co0,
+                                                                          fg_color=co0,
+                                                                          cursor='hand2')
+        self.estoque_frame_Button_Exclusao.place(x=387, y=350)
+        #self.cadastro_frame_Button_Sub_Categoria.configure(command = )
         
         # criando o frame relatorio
         self.relatorio_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
@@ -174,7 +216,6 @@ class Home(customtkinter.CTk):
         # set button color for selected button
         self.home_button.configure(fg_color=("gray75", "gray25") if name == "home" else "transparent")
         self.cadastro_button.configure(fg_color=("gray75", "gray25") if name == "cadastro" else "transparent")
-        self.exclusao_button.configure(fg_color=("gray75", "gray25") if name == "exclusao" else "transparent")
         self.estoque_button.configure(fg_color=("gray75", "gray25") if name == "estoque" else "transparent")
         self.relatorio_button.configure(fg_color=("gray75", "gray25") if name == "relatorio" else "transparent")
         self.suporte_button.configure(fg_color=("gray75", "gray25") if name == "suporte" else "transparent")
@@ -189,11 +230,6 @@ class Home(customtkinter.CTk):
             self.cadastro_frame.grid(row=0, column=1, sticky="nsew")
         else:
             self.cadastro_frame.grid_forget()
-            
-        if name == "exclusao":
-            self.exclusao_frame.grid(row=0, column=1, sticky="nsew")
-        else:
-            self.exclusao_frame.grid_forget()
             
         if name == "estoque":
             self.estoque_frame.grid(row=0, column=1, sticky="nsew")
@@ -218,6 +254,7 @@ class Home(customtkinter.CTk):
 
     def exclusao_button_event(self):
         self.select_frame_by_name("exclusao")
+        
         
     def estoque_button_event(self):
         self.select_frame_by_name("estoque")

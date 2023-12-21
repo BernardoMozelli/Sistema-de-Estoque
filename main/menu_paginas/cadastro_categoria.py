@@ -4,7 +4,6 @@ import customtkinter
 from utils.layout.front import *
 import os
 from banco_conections.conexao import *
-from banco_conections.conexao_forncedores import query_fornecedor
 from PIL import ImageTk, Image
 from banco_conections.conexao_categorias import query_categoria
 

@@ -8,6 +8,7 @@ from PIL import ImageTk, Image
 from banco_conections.conexao_subcategorias import var_result, var_resultC
 
 def cad_subcategoria():
+    from banco_conections.conexao_subcategorias import query_subcategoria
     janela_subcategoria = customtkinter.CTkToplevel()
     janela_subcategoria.attributes("-topmost", True)
     janela_subcategoria.title("Cadastro de Sub-Categoria")
@@ -90,8 +91,8 @@ def cad_subcategoria():
 
     def armazenar_subcategoria():
         
-        global var_categoria
-        var_categoria = entry_subcategoria.get()
+        global var_subcategoria
+        var_subcategoria = entry_subcategoria.get()
     armazenar_subcategoria
     
     def clean_entrys():
@@ -112,7 +113,7 @@ def cad_subcategoria():
     button_cadastrar.place(x=520, y=370, anchor=tkinter.CENTER)
 
     # Cadastrando as infomações do fornecedor no banco de dados
-    #button_cadastrar.configure(command=lambda:[armazenar_categoria(), query_categoria(), clean_entryc()])
+    button_cadastrar.configure(command=lambda:[armazenar_subcategoria(), query_subcategoria(), clean_entrys()])
 
     janela_subcategoria.mainloop()
     
