@@ -1,0 +1,21 @@
+2023-08-29 16:28:31 : DEBUG : teste.py : <module> : 62 : --- Start ---
+2023-08-29 16:28:31 : DEBUG : teste.py : <module> : 64 : Custom Logger
+2023-08-29 16:28:31 : DEBUG : teste.py : hello : 55 : Hello World
+2023-08-29 16:28:31 : DEBUG : teste.py : <module> : 69 : --- End ---
+2023-08-29 16:29:17 : DEBUG : <module> : 439 : --- Start ---
+2023-08-29 16:29:17 : DEBUG : load_ui : 405 : - Load UI -
+2023-08-29 16:29:17 : ERROR : <module> : 447 : Failed
+2023-08-29 16:29:17 : ERROR : <module> : 448 : No section: 'tkinter'
+Traceback (most recent call last):
+  File "C:\Users\bernardomedeiros\Desktop\inventario - CTK\main\teste.py", line 444, in <module>
+    load_ui()
+  File "C:\Users\bernardomedeiros\Desktop\inventario - CTK\main\teste.py", line 410, in load_ui
+    ROOT.title(CONFIG.get('tkinter', 'title'))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bernardomedeiros\AppData\Local\Programs\Python\Python311\Lib\configparser.py", line 797, in get
+    d = self._unify_values(section, vars)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\bernardomedeiros\AppData\Local\Programs\Python\Python311\Lib\configparser.py", line 1168, in _unify_values
+    raise NoSectionError(section) from None
+configparser.NoSectionError: No section: 'tkinter'
+2023-08-29 16:29:17 : DEBUG : <module> : 451 : --- End ---
