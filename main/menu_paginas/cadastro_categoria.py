@@ -43,7 +43,7 @@ def cad_categoria():
     #Caixa para selecionar segmento
     global var_combobox
     combobox = customtkinter.CTkOptionMenu(master=janela_categoria,
-                                       values=["Alimentos", "Bebida", "Papelaria", "Informatica", "Cosmeticos", "Outros"])
+                                       values=["Alimentos", "Bebida", "Papelaria", "Informática", "Eletrônicos", "Eletrodomésticos", "Cosmeticos", "Outros"])
     combobox.configure(fg_color=co0, width=180, height=30)
     combobox.set("Informatica")  # setando valor inicial
     combobox.place(x=294, y=168)

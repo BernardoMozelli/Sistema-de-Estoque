@@ -5,7 +5,7 @@ from banco_conections.conexao import con
 import re
 
 def query_fornecedor():
-    from menu_paginas.cadastro_fabricante import var_cnpj, var_nome, var_razao, var_cep, var_logradouro, var_complemento, var_bairro, var_cidade_estado, var_status, var_telefone
+    from menu_paginas.cadastro_fornecedor import var_cnpj, var_nome, var_razao, var_cep, var_logradouro, var_complemento, var_bairro, var_cidade_estado, var_status, var_telefone
     cursor = con.cursor()
     query_f = (("SELECT cnpj FROM cadastro_fornecedores WHERE cnpj ='{}'".format(var_cnpj)))
     cursor.execute(query_f)

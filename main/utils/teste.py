@@ -2,10 +2,6 @@ from CTkScrollableDropdown import *
 import customtkinter
 
 root = customtkinter.CTk()
-root.geometry("1000x550+250+70")
-root.resizable(False, False)
-root.grid_rowconfigure(0, weight=1)
-root.grid_columnconfigure(1, weight=1)
 
 customtkinter.CTkLabel(root, text="Different Dropdown Styles").pack(pady=5)
 

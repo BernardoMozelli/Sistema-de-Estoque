@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import ttk
 import customtkinter as ctk
 import customtkinter
 from utils.layout.front import *
@@ -6,10 +7,11 @@ import os
 import requests
 import json
 from PIL import ImageTk, Image
-from banco_conections.conexao_entradaestoque import var_resultNfantasia, var_resulEsegmento, var_resultNfantasiaF, atualiza_fornecedor, atualiza_fabricante
-
+from banco_conections.conexao_entradaestoque import selected_fabricante, selected_fornecedor
+from .CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 
 def entrada_estoque():
+    
     janela_entrada = customtkinter.CTkToplevel()
     janela_entrada.attributes("-topmost", True)
     janela_entrada.after(200, lambda: janela_entrada.iconbitmap("./imagens/logo_icone.ico")) # alterando o icone da janela
@@ -21,7 +23,6 @@ def entrada_estoque():
 
     # Inserindo as imagens que serão utilizadas
     image_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "C:/sistema_estoque/imagens")
-
 
     background_image = customtkinter.CTkImage(dark_image=Image.open(
     os.path.join(image_path, "background_fornecedor.png")), size=(1000, 550))
@@ -45,7 +46,7 @@ def entrada_estoque():
                                     bg_color="transparent")
     label_produto.place(x=193, y=96, anchor=tkinter.CENTER)
 
-    # Criando e configurando a entry CNPJ
+    # Criando e configurando a entry nome do produto
     global entry_nome
     entry_nome = customtkinter.CTkEntry(master=janela_entrada,
                                     width=250,
@@ -59,7 +60,7 @@ def entrada_estoque():
                                     corner_radius=10)
     entry_nome.place(x=290, y=125, anchor=tkinter.CENTER)
     entry_nome.get()
-
+    
     # -----------------------------------------------------------------
     # Criando e configurando a label nome fantasia
     label_quantidade = customtkinter.CTkLabel(master=janela_entrada,
@@ -97,14 +98,15 @@ def entrada_estoque():
     label_segmento.place(x=198, y=164, anchor=tkinter.CENTER)
 
     #Caixa para selecionar segmento
-    global var_comboEsegmento
-    combobox_Esegmento = customtkinter.CTkOptionMenu(master=janela_entrada,
-                                       values=var_resulEsegmento)
-    combobox_Esegmento.configure(fg_color=co0, width=180, height=30)
-    var_comboEsegmento = combobox_Esegmento.get()
-    combobox_Esegmento.place(x=257, y=197, anchor=tkinter.CENTER)
+    optionmenu_segmento = customtkinter.CTkOptionMenu(master=janela_entrada,
+                                       dynamic_resizing=False)
+    optionmenu_segmento.configure(fg_color=co0, width=200, height=30)
+    optionmenu_segmento.set("SELECIONE O SEGMENTO")
+    CTkScrollableDropdown(optionmenu_segmento, values=["Alimentos", "Bebida", "Papelaria", "Informática", "Eletrônicos", "Eletrodomésticos", "Cosmeticos", "Outros"])
+    optionmenu_segmento.place(x=267, y=197, anchor=tkinter.CENTER)
 
     # -----------------------------------------------------------------
+    
     # Criando e configurando a label descrição
     label_fabricante = customtkinter.CTkLabel(master=janela_entrada,
                                    text="FABRICANTE",
@@ -115,16 +117,39 @@ def entrada_estoque():
                                    bg_color="transparent")
     label_fabricante.place(x=622, y=165, anchor=tkinter.CENTER)
     
-    
     #Caixa para selecionar nome do fabricante
-    
-    global var_comboFabricante
-    combobox_fabricante = customtkinter.CTkOptionMenu(master=janela_entrada,
-                                       values=var_resultNfantasiaF)
-    combobox_fabricante.configure(width=280, height=30, fg_color=co0,
+    optionmenu_fabricante = customtkinter.CTkOptionMenu(master=janela_entrada)
+    optionmenu_fabricante.set("SELECIONE O FABRICANTE")
+    optionmenu_fabricante.configure( width=380, height=30,
+                                       dynamic_resizing=False,
+                                       fg_color=co0,
                                        bg_color=co0)
-    combobox_fabricante.place(x=724, y=198, anchor=tkinter.CENTER)
-    
+    CTkScrollableDropdown(optionmenu_fabricante, values=[selected_fabricante])
+    optionmenu_fabricante.place(x=775, y=198, anchor=tkinter.CENTER)
+
+    # -----------------------------------------------------------------
+
+    # Criando e configurando a label fornecedor
+    label_fornecedor = customtkinter.CTkLabel(master=janela_entrada,
+                                           text="FORNECEDOR",
+                                           font=('Poppins bold', 12),
+                                           width=40,
+                                           height=20,
+                                           fg_color=co4,
+                                           bg_color="transparent")
+    label_fornecedor.place(x=626, y=242, anchor=tkinter.CENTER)
+
+    #Caixa para selecionar nome do fornecedor
+    optionmenu_fornecedor = customtkinter.CTkOptionMenu(master=janela_entrada)
+    optionmenu_fornecedor.set("SELECIONE O FORNECEDOR")
+    optionmenu_fornecedor.configure( values=selected_fornecedor,
+                                       dynamic_resizing=False,
+                                       fg_color=co0,
+                                       bg_color=co0)
+    CTkScrollableDropdown(optionmenu_fornecedor, values=selected_fornecedor)
+    optionmenu_fornecedor.configure(width=380, height=30)
+    optionmenu_fornecedor.place(x=775, y=274, anchor=tkinter.CENTER)
+
     # -----------------------------------------------------------------
     # Criando e configurando a label fabricante
     label_modelo = customtkinter.CTkLabel(master=janela_entrada,
@@ -147,25 +172,7 @@ def entrada_estoque():
                                           placeholder_text='Modelo',
                                           justify='center')
     entry_modelo.place(x=292, y=270, anchor=tkinter.CENTER)
-    # -----------------------------------------------------------------
-
-    # Criando e configurando a label fornecedor
-    label_fornecedor = customtkinter.CTkLabel(master=janela_entrada,
-                                           text="FORNECEDOR",
-                                           font=('Poppins bold', 12),
-                                           width=40,
-                                           height=20,
-                                           fg_color=co4,
-                                           bg_color="transparent")
-    label_fornecedor.place(x=626, y=242, anchor=tkinter.CENTER)
-
-    #Caixa para selecionar nome do fornecedor
-    global var_comboFornecedor
-    combobox_fornecedor = customtkinter.CTkOptionMenu(master=janela_entrada,
-                                       values=var_resultNfantasia, fg_color=co0,
-                                       bg_color=co0)
-    combobox_fornecedor.configure(width=280, height=30)
-    combobox_fornecedor.place(x=724, y=274, anchor=tkinter.CENTER)
+    
     # -----------------------------------------------------------------
     # Criando e configurando a label data da compra
     label_datacompra = customtkinter.CTkLabel(master=janela_entrada,
@@ -320,36 +327,11 @@ def entrada_estoque():
         entry_nota.delete(0, "end")
     cleaning_entry
     
-    # ---------------------------------------------------------------------------------------
-
-    button_atualizar1 = customtkinter.CTkButton(master=janela_entrada, text="",
-                                           width=15,
-                                           height=15,
-                                           font=('Poppins Bold', 10),
-                                           fg_color=co4,
-                                           bg_color=co4,
-                                           image=vetor_atualizar,
-                                           cursor='hand2')
-
-    button_atualizar1.place(x=885, y=273, anchor=tkinter.CENTER)
+     # ---------------------------------------------------------------------------------------
     
     # Quando clicado, as informações presentes nas entrys são apagadas para inserção de novos 
     # dados.
-    button_atualizar1.configure(command=atualiza_fabricante)
-    
-    #-----------------------------------------------------------------------------------------------------
-    
-    button_atualizar2 = customtkinter.CTkButton(master=janela_entrada, text="",
-                                           width=15,
-                                           height=15,
-                                           font=('Poppins Bold', 10),
-                                           fg_color=co4,
-                                           bg_color=co4,
-                                           image=vetor_atualizar,
-                                           cursor='hand2')
-
-    button_atualizar2.place(x=885, y=197, anchor=tkinter.CENTER)
-    button_atualizar2.configure(command=atualiza_fornecedor)
+    #button_atualizarfabricante.configure(command=atualiza_ulvalorfabri)
     
     
     # Quando clicado, as informações presentes nas entrys são apagadas para inserção de novos 

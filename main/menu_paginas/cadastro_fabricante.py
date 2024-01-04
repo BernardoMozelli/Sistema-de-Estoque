@@ -327,7 +327,7 @@ def cad_fabricante():
             entry_status.insert(INSERT, format(receita['situacao']))
             entry_telefone.insert(INSERT, format(receita['telefone']))
 
-            global var_cnpj, var_nome, var_razao, var_cep, var_logradouro, var_complemento, var_bairro, var_cidade_estado, var_status, var_telefone
+            global var_cnpj, var_nome, var_nomefabricante, var_razao, var_cep, var_logradouro, var_complemento, var_bairro, var_cidade_estado, var_status, var_telefone
             var_cnpj = entry_cnpj.get()
             var_nome = entry_nome.get()
             var_razao = entry_razao.get()
@@ -338,6 +338,8 @@ def cad_fabricante():
             var_cidade_estado = entry_cidade_estado.get()
             var_status = entry_status.get()
             var_telefone = entry_telefone.get()
+            
+            var_nomefabricante = entry_nome.get()
             
                     
             if var_nome == "":
@@ -365,6 +367,10 @@ def cad_fabricante():
         entry_status.delete(0, "end")
         entry_telefone.delete(0, "end")
     cleaning_entry
+    
+    global var_atualizafabricante
+    var_atualizafabricante = entry_razao.get()
+    
 
     # ---------------------------------------------------------------------------------------
     # Criando e configurando o botão consultar
@@ -400,6 +406,9 @@ def cad_fabricante():
     button_clean.configure(command=cleaning_entry)
 
     # ---------------------------------------------------------------------------------------
+  
+    global var_ultfabricante
+    var_ultfabricante = entry_nome.get()
     
     # Criando e configurando o botão consultar
     button_cadastrarF = customtkinter.CTkButton(master=janela_fabricante, text="CADASTRAR",
@@ -416,7 +425,6 @@ def cad_fabricante():
     # Cadastrando as infomações do fornecedor no banco de dados
     button_cadastrarF.configure(command=lambda:[query_fabricante(), cleaning_entry()])
 
-
-    janela_fabricante.mainloop()
+    #janela_fabricante.mainloop()
     
 cad_fabricante

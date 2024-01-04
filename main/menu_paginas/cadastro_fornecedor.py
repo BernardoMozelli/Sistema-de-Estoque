@@ -365,7 +365,7 @@ def cad_fornecedor():
         entry_status.delete(0, "end")
         entry_telefone.delete(0, "end")
     cleaning_entry
-
+    
     # ---------------------------------------------------------------------------------------
     # Criando e configurando o botão consultar
     button_consultar = customtkinter.CTkButton(master=janela_fornecedor, text="",
