@@ -5,7 +5,7 @@ from utils.layout.front import *
 import os
 from banco_conections.conexao import *
 from PIL import ImageTk, Image
-from banco_conections.conexao_categorias import query_categoria
+from banco_conections.conexao_categorias import valida_cadastroCategoria, query_categoria
 
 def cad_categoria():
     janela_categoria = customtkinter.CTkToplevel()
@@ -31,23 +31,23 @@ def cad_categoria():
     label_background.pack()
     
         
-    label_combobox = customtkinter.CTkLabel(master=janela_categoria,
+    label_optionmenucategoria = customtkinter.CTkLabel(master=janela_categoria,
                                              text="SEGMENTO",
                                              font=('Poppins bold', 13),
                                              width=40,
                                              height=20,
                                              fg_color=co4,
                                              bg_color="transparent")
-    label_combobox.place(x=330, y=150, anchor=tkinter.CENTER)
+    label_optionmenucategoria.place(x=330, y=150, anchor=tkinter.CENTER)
 
     #Caixa para selecionar segmento
-    global var_combobox
-    combobox = customtkinter.CTkOptionMenu(master=janela_categoria,
+    global var_optionmenucategoria
+    optionmenucategoria = customtkinter.CTkOptionMenu(master=janela_categoria,
                                        values=["Alimentos", "Bebida", "Papelaria", "Informática", "Eletrônicos", "Eletrodomésticos", "Cosmeticos", "Outros"])
-    combobox.configure(fg_color=co0, width=180, height=30)
-    combobox.set("Informatica")  # setando valor inicial
-    combobox.place(x=294, y=168)
-    var_combobox = combobox.get()
+    optionmenucategoria.configure(fg_color=co0, width=180, height=30)
+    optionmenucategoria.set("Informatica")  # setando valor inicial
+    optionmenucategoria.place(x=294, y=168)
+    var_optionmenucategoria = optionmenucategoria.get()
     
     label_categoria = customtkinter.CTkLabel(master=janela_categoria,
                                              text="CATEGORIA",
@@ -70,8 +70,7 @@ def cad_categoria():
                                         justify='center')
     entry_categoria.place(x=687, y=183, anchor=tkinter.CENTER)
 
-    def armazenar_categoria():
-        
+    def armazenar_categoria():    
         global var_categoria
         var_categoria = entry_categoria.get()
     armazenar_categoria
@@ -93,7 +92,7 @@ def cad_categoria():
     button_cadastrar.place(x=520, y=270, anchor=tkinter.CENTER)
 
     # Cadastrando as infomações do fornecedor no banco de dados
-    button_cadastrar.configure(command=lambda:[armazenar_categoria(), query_categoria(), clean_entryc()])
+    button_cadastrar.configure(command=lambda:[armazenar_categoria(), valida_cadastroCategoria(), query_categoria(), clean_entryc()])
 
     janela_categoria.mainloop()
     

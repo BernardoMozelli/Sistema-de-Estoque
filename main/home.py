@@ -162,7 +162,7 @@ class Home(customtkinter.CTk):
         label_logo.pack()
         
         #Criando os botões no frame estoque
-        self.estoque_frame_Button_Entrada = customtkinter.CTkButton(self.estoque_frame, text="ENTRADA",
+        self.estoque_frame_Button_Entrada = customtkinter.CTkButton(self.estoque_frame, text="CADASTRO DE PRODUTO",
                                                                         width=170,
                                                                         height=35,
                                                                         font=('Poppins Bold', 14),
@@ -177,7 +177,7 @@ class Home(customtkinter.CTk):
         
         #self.estoque_frame_Button_Entrada.configure(command = )
         
-        self.estoque_frame_Button_Saida = customtkinter.CTkButton(self.estoque_frame, text="SAÍDA",
+        self.estoque_frame_Button_Saida = customtkinter.CTkButton(self.estoque_frame, text="ENTRADA",
                                                                       width=170,
                                                                       height=35,
                                                                       font=('Poppins Bold', 14),
@@ -190,7 +190,7 @@ class Home(customtkinter.CTk):
         self.estoque_frame_Button_Saida.place(x=387, y=260)
         #self.estoque_frame_Button_Saida.configure(command = )
 
-        self.estoque_frame_Button_Exclusao = customtkinter.CTkButton(self.estoque_frame, text="EXCLUSÃO",
+        self.estoque_frame_Button_Exclusao = customtkinter.CTkButton(self.estoque_frame, text="SAÍDA",
                                                                           width=170,
                                                                           height=35,
                                                                           font=('Poppins Bold', 14),

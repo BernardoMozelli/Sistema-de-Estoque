@@ -51,7 +51,6 @@ def cad_fabricante():
     label_cnpj.place(x=185, y=76, anchor=tkinter.CENTER)
 
     # Criando e configurando a entry CNPJ
-    global entry_cnpj
     entry_cnpj = customtkinter.CTkEntry(master=janela_fabricante,
                                     width=250,
                                     height=20,
@@ -63,7 +62,6 @@ def cad_fabricante():
                                     justify='center',
                                     corner_radius=10)
     entry_cnpj.place(x=290, y=105, anchor=tkinter.CENTER)
-    entry_cnpj.get()
 
     # Formata a entry CNPJ para a normativa padrão
     def mascara_cnpj(event=None):   
@@ -117,6 +115,7 @@ def cad_fabricante():
     label_razao.place(x=209, y=164, anchor=tkinter.CENTER)
 
     # Criando e configurando a entry razão social
+    global entry_razao
     entry_razao = customtkinter.CTkEntry(master=janela_fabricante,
                                      width=250,
                                      height=20,
@@ -299,11 +298,23 @@ def cad_fabricante():
                                         placeholder_text='Telefone',
                                         justify='center')
     entry_telefone.place(x=710, y=420, anchor=tkinter.CENTER)
+    
+    #Valida se o campo cnpj foi preenchido
+    def valida_cadastroFabricante():
+        #Valida o módulo cadastro de fabricante
+        var_validacnpj = entry_cnpj.get()
+        while var_validacnpj == "":
+            msgErroCadastrofabricante()
+            return var_validacnpj
+        else:
+            msg_sucessoCadFabricante
+    valida_cadastroFabricante
 
     # API Consulta de CNPJ. A mesma insere os dados resultantes da
     # consulta nos respectivos campos
 
     def consulta_cnpj(event=None):
+        
         cnpj = entry_cnpj.get().replace('.', '').replace('/', '').replace('-', '').strip()
         url = 'https://www.receitaws.com.br/v1/cnpj/{}'.format(cnpj)
         req = requests.get(url)
@@ -423,7 +434,7 @@ def cad_fabricante():
     button_cadastrarF.place(x=501, y=475, anchor=tkinter.CENTER)
 
     # Cadastrando as infomações do fornecedor no banco de dados
-    button_cadastrarF.configure(command=lambda:[query_fabricante(), cleaning_entry()])
+    button_cadastrarF.configure(command=lambda:[valida_cadastroFabricante(), query_fabricante(), cleaning_entry()])
 
     #janela_fabricante.mainloop()
     

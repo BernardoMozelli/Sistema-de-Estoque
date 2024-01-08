@@ -302,6 +302,17 @@ def cad_fornecedor():
 
     # API Consulta de CNPJ. A mesma insere os dados resultantes da
     # consulta nos respectivos campos
+    
+    #Valida se o campo cnpj foi preenchido
+    def valida_cadastroFornecedor():
+        #Valida o módulo cadastro de fabricante
+        var_validacnpj = entry_cnpj.get()
+        while var_validacnpj == "":
+            msgErroCadastrofornecedor()
+            return var_validacnpj
+        else:
+            msg_sucessoCadFornecedor
+    valida_cadastroFornecedor
 
     def consulta_cnpj(event=None):
         cnpj = entry_cnpj.get().replace('.', '').replace('/', '').replace('-', '').strip()

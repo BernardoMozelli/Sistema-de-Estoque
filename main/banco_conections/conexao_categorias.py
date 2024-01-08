@@ -3,6 +3,19 @@ from tkinter import *
 from utils.mensagem_box import *
 from banco_conections.conexao import con
 
+#Valida o módulo cadastro de categoria
+def valida_cadastroCategoria():
+    from menu_paginas.cadastro_categoria import var_categoria
+    from utils.mensagem_box import msg_sucessoCadCategoria, msgErroCadastroCategoria
+    
+    while var_categoria == None:
+        msgErroCadastroCategoria()
+        return var_categoria
+    else:
+        msg_sucessoCadCategoria()
+
+valida_cadastroCategoria
+
 def query_categoria():
     from menu_paginas.cadastro_categoria import var_combobox, var_categoria
     cursor = con.cursor()

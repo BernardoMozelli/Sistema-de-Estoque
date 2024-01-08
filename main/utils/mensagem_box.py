@@ -1,6 +1,7 @@
 from CTkMessagebox import CTkMessagebox
 import sys
 
+#Mensagem cadastro de usuário
 def msg_aviso1():
   global show_aviso1
   show_aviso1 = CTkMessagebox(
@@ -28,32 +29,6 @@ def msg_aviso3():
         icon="warning", option_1="Ok",
         fade_in_duration=(2))
 msg_aviso3
-
-def msg_aviso4():
-  global show_aviso4
-  show_aviso4 = CTkMessagebox(
-        title="Esqueci minha senha - Aviso",
-        message="O endereço de e-mail fornecido não é válido!!!",
-        icon="warning", option_1="Ok",
-        fade_in_duration=(2))
-  resposta = show_aviso4.get()
-  if resposta == "Ok":
-       global show_aviso5
-       show_aviso5 = CTkMessagebox(
-       title="Esqueci minha senha - Aviso",
-       message="Informe um endereço válido para que possamos prosseguir com a sua solicitação.",
-       icon="warning", option_1="Ok",
-       fade_in_duration=(2))
-msg_aviso4
-
-def msg_aviso6():
-  global show_aviso6
-  show_aviso6 = CTkMessagebox(
-        title="Esqueci minha senha - Aviso",
-        message="Usuário não encontrado em nossa base de dados. Favor verificar as informações fornecidas!!!",
-        icon="warning", option_1="Ok",
-        fade_in_duration=(2))
-msg_aviso6
 
 def msg_aviso7():
   global show_aviso7
@@ -91,6 +66,51 @@ def msg_aviso8():
         fade_in_duration=(2))
 msg_aviso8
 
+
+def msg_sucessoCad():
+ global show_sucesso
+ show_sucesso = CTkMessagebox(
+        title="Cadastro de usuário",
+        message="O cadastro foi realizado com sucesso",
+        icon="check", option_1="Ok",
+        fade_in_duration=(2))
+ resposta = show_sucesso.get()
+ 
+ if resposta == "Ok":
+    sys.exit()
+msg_sucessoCad
+
+#---------------------------------------------------------------------------------------------------------------------------------
+#Mensagens esqueci minha senha
+
+def msg_aviso4():
+  global show_aviso4
+  show_aviso4 = CTkMessagebox(
+        title="Esqueci minha senha - Aviso",
+        message="O endereço de e-mail fornecido não é válido!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+  resposta = show_aviso4.get()
+  if resposta == "Ok":
+       global show_aviso5
+       show_aviso5 = CTkMessagebox(
+       title="Esqueci minha senha - Aviso",
+       message="Informe um endereço válido para que possamos prosseguir com a sua solicitação.",
+       icon="warning", option_1="Ok",
+       fade_in_duration=(2))
+msg_aviso4
+
+def msg_aviso6():
+  global show_aviso6
+  show_aviso6 = CTkMessagebox(
+        title="Esqueci minha senha - Aviso",
+        message="Usuário não encontrado em nossa base de dados. Favor verificar as informações fornecidas!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msg_aviso6
+
+#---------------------------------------------------------------------------------------------------------------------------------
+#Mensagens erro Banco de dados
 def msg_error1():
   global show_error1
   show_error1 = CTkMessagebox(
@@ -119,20 +139,9 @@ def msg_error3():
         fade_in_duration=(2))
 msg_error3
 
-def msg_sucessoCad():
- global show_sucesso
- show_sucesso = CTkMessagebox(
-        title="Cadastro de usuário",
-        message="O cadastro foi realizado com sucesso",
-        icon="check", option_1="Ok",
-        fade_in_duration=(2))
- resposta = show_sucesso.get()
- 
- if resposta == "Ok":
-    sys.exit()
-msg_sucessoCad
+#---------------------------------------------------------------------------------------------------------------------------------
 
-#Reset pass mensagem
+#Reset de senha mensagem
 def msg_reset():
     global show_msgmail, show_msgmail2
     show_msgmail = CTkMessagebox(title="Reset de Senha", 
@@ -145,6 +154,9 @@ def msg_reset():
                                   fade_in_duration=(2))
 msg_reset
 
+#---------------------------------------------------------------------------------------------------------------------------------
+
+#Mensagens cadastro de fornecedor/fabricante
 def msg_cnpjincorreto():
   global show_avisoCNPJ
   show_avisoCNPJ = CTkMessagebox( 
@@ -154,16 +166,93 @@ def msg_cnpjincorreto():
         fade_in_duration=(2))
 msg_cnpjincorreto
 
-def msg_sucessoCadFornecedor():
- global show_sucesso_fornecedor
- show_sucesso_fornecedor = CTkMessagebox(
-        title="Cadastro de fornecedor",
+def msg_sucessoCadCategoria():
+ global show_sucesso_categoria
+ show_sucesso_categoria = CTkMessagebox(
+        title="Cadastro de Categoria",
         message="Cadastro realizado com sucesso",
         icon="check", option_1="Ok",
         fade_in_duration=(2))
- resposta = show_sucesso_fornecedor.get()
- 
- if resposta == "Ok":
-    import home
-    home
+msg_sucessoCadCategoria
+
+def msg_sucessoCadFabricante():
+ global show_sucesso_fornecedor
+ show_sucesso_fornecedor = CTkMessagebox(
+        title="Cadastro de Fabricante",
+        message="Cadastro realizado com sucesso",
+        icon="check", option_1="Ok",
+        fade_in_duration=(2))
+msg_sucessoCadFabricante
+
+def msg_sucessoCadFornecedor():
+ global show_sucesso_fornecedor
+ show_sucesso_fornecedor = CTkMessagebox(
+        title="Cadastro de Fornecedor",
+        message="Cadastro realizado com sucesso",
+        icon="check", option_1="Ok",
+        fade_in_duration=(2))
 msg_sucessoCadFornecedor
+
+def msg_sucessoEntradaestoque():
+ global show_sucesso_fornecedor
+ show_sucesso_fornecedor = CTkMessagebox(
+        title="Cadastro de Produto",
+        message="Cadastro realizado com sucesso",
+        icon="check", option_1="Ok",
+        fade_in_duration=(2))
+msg_sucessoEntradaestoque
+
+def msgErroCadastroCategoria():
+ global show_erro_categoria
+ show_erro_categoria = CTkMessagebox(
+        title="Cadastro de Categoria",
+        message="Erro ao realizar cadastro da categoria. Verifique as informações fornecidas e tente novamente!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msgErroCadastroCategoria
+
+def msgErroCadastrofabricante():
+ global show_erro_fabricante
+ show_erro_fabricante = CTkMessagebox(
+        title="Cadastro de Fabricante",
+        message="Erro ao realizar cadastro do fabricante. Verifique as informações fornecidas e tente novamente!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msgErroCadastrofabricante
+
+def msgErroFabricanteExiste():
+  global show_fabricanteexiste
+  show_fabricanteexiste = CTkMessagebox(
+        title="Aviso - Cadastro de Fabricante",
+        message="O fabricante informado já está cadastrado!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msgErroFabricanteExiste
+
+def msgErroFornecedorExiste():
+  global show_fabricanteexiste
+  show_fabricanteexiste = CTkMessagebox(
+        title="Aviso - Cadastro de Fornecedor",
+        message="O fornecedor informado já está cadastrado!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msgErroFornecedorExiste
+
+def msgErroCadastrofornecedor():
+ global show_erro_fornecedor
+ show_erro_fornecedor = CTkMessagebox(
+        title="Cadastro de Fornecedor",
+        message="Erro ao realizar cadastro do fornecedor. Verifique as informações fornecidas e tente novamente!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msgErroCadastrofornecedor
+
+def msgErroEntradaestoque():
+ global show_erro_entradaestoque
+ show_erro_entradaestoque = CTkMessagebox(
+        title="Erro - Entrada/Estoque",
+        message="Erro ao realizar a entrada do produto no estoque. Favor preencher todos os campos!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msgErroEntradaestoque
+
