@@ -9,17 +9,17 @@ from PIL import ImageTk, Image
 #from banco_conections.conexao_saidaEstoque import selected_produto, selected_modelo, selected_entcategoria, selected_Entsubcategoria,selected_nserie, query_ProdutoEntrada
 from .CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 
-def movimentaEstoque_saida():
+def movimentaEstoque_entrada():
     
-    from banco_conections.conexao_saidaEstoque import selected, query_ProdutoEntrada, movimenta_saidaEstoque, atualiza_tabela
-    janela_SaidaProduto = customtkinter.CTkToplevel()
-    janela_SaidaProduto.attributes("-topmost", True)
-    janela_SaidaProduto.after(200, lambda: janela_SaidaProduto.iconbitmap("./imagens/logo_icone.ico")) # alterando o icone da janela
-    janela_SaidaProduto.title("Movimentação de Saída/estoque")
-    janela_SaidaProduto.geometry("1000x550+250+70")
-    janela_SaidaProduto.resizable(False, False)
-    janela_SaidaProduto.grid_rowconfigure(0, weight=1)
-    janela_SaidaProduto.grid_columnconfigure(1, weight=1)
+    from banco_conections.conexao_movimentacaoEntrada import selected, query_ProdutoEntrada, movimenta_entradaEstoque, atualiza_tabela
+    janela_EntradaProduto = customtkinter.CTkToplevel()
+    janela_EntradaProduto.attributes("-topmost", True)
+    janela_EntradaProduto.after(200, lambda: janela_EntradaProduto.iconbitmap("./imagens/logo_icone.ico")) # alterando o icone da janela
+    janela_EntradaProduto.title("Movimentação de Entrada/estoque")
+    janela_EntradaProduto.geometry("1000x550+250+70")
+    janela_EntradaProduto.resizable(False, False)
+    janela_EntradaProduto.grid_rowconfigure(0, weight=1)
+    janela_EntradaProduto.grid_columnconfigure(1, weight=1)
 
     # Inserindo as imagens que serão utilizadas
     image_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "C:/sistema_estoque/imagens")
@@ -35,10 +35,8 @@ def movimentaEstoque_saida():
     
     customtkinter.CTkImage(dark_image=Image.open(
     os.path.join(image_path, "atualizar.png")), size=(17, 17))
-    
-    #value_titulo = ["ID", "PRODUTO", "QUANTIDADE", "SEGMENTO", "FABRICANTE", "FORNECEDOR", "MODELO"]
-    
-    frame_saida=customtkinter.CTkScrollableFrame(master=janela_SaidaProduto,orientation="vertical",
+        
+    frame_saida=customtkinter.CTkScrollableFrame(master=janela_EntradaProduto,orientation="vertical",
                       width=800, height=200,
                       bg_color="transparent",
                       fg_color="transparent",
@@ -47,13 +45,13 @@ def movimentaEstoque_saida():
     
         
     #Criando a treeview com os dados do banco
-    global table
-    table = CTkTable(master=frame_saida, column=7, hover_color=co3, values=selected)
-    table.configure(width=30,height=30)
-    table.pack(pady=0.30)
+    global table_entrada
+    table_entrada = CTkTable(master=frame_saida, column=7, hover_color=co3, values=selected)
+    table_entrada.configure(width=30,height=30)
+    table_entrada.pack(pady=0.30)
 
     #Criando e configurando a label ID
-    label_id= customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_id= customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="ID",
                                            font=('Poppins bold', 12),
                                            width=25,
@@ -64,7 +62,7 @@ def movimentaEstoque_saida():
     label_id.place(x=140, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label produto
-    label_produto= customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_produto= customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="PRODUTO",
                                            font=('Poppins bold', 12),
                                            width=25,
@@ -75,7 +73,7 @@ def movimentaEstoque_saida():
     label_produto.place(x=195, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label quantidade
-    label_quantidade= customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_quantidade= customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="QTD",
                                            font=('Poppins bold', 12),
                                            width=15,
@@ -86,7 +84,7 @@ def movimentaEstoque_saida():
     label_quantidade.place(x=250, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label segmento
-    label_segmento= customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_segmento= customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="SEGMENTO",
                                            font=('Poppins bold', 12),
                                            width=13,
@@ -97,7 +95,7 @@ def movimentaEstoque_saida():
     label_segmento.place(x=305, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label fabricante
-    label_fabricante= customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_fabricante= customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="FABRICANTE",
                                            font=('Poppins bold', 12),
                                            width=50,
@@ -108,7 +106,7 @@ def movimentaEstoque_saida():
     label_fabricante.place(x=460, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label fornecedor
-    label_fornecedor= customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_fornecedor= customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="FORNECEDOR",
                                            font=('Poppins bold', 12),
                                            width=50,
@@ -119,7 +117,7 @@ def movimentaEstoque_saida():
     label_fornecedor.place(x=700,y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label modelo
-    label_modelo= customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_modelo= customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="MODELO",
                                            font=('Poppins bold', 12),
                                            width=50,
@@ -131,7 +129,7 @@ def movimentaEstoque_saida():
     
     
     # Criando e configurando a label id
-    label_id = customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_id = customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="ID",
                                            font=('Poppins bold', 12),
                                            width=40,
@@ -140,7 +138,7 @@ def movimentaEstoque_saida():
                                            bg_color="transparent")
     label_id.place(x=167, y=310, anchor=tkinter.CENTER)
     
-    entry_id = customtkinter.CTkEntry(master=janela_SaidaProduto,
+    entry_id = customtkinter.CTkEntry(master=janela_EntradaProduto,
                                     width=250,
                                     height=20,
                                     font=('Century gothic', 13),
@@ -154,7 +152,7 @@ def movimentaEstoque_saida():
     entry_id.get()
     
     # Criando e configurando a label produto
-    label_produto = customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_produto = customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="NOME DO PRODUTO",
                                            font=('Poppins bold', 12),
                                            width=40,
@@ -163,8 +161,8 @@ def movimentaEstoque_saida():
                                            bg_color="transparent")
     label_produto.place(x=630, y=310, anchor=tkinter.CENTER)
     
-    global entry_produto
-    entry_produto = customtkinter.CTkEntry(master=janela_SaidaProduto,
+    global entry_produtoEntrada
+    entry_produtoEntrada = customtkinter.CTkEntry(master=janela_EntradaProduto,
                                     width=250,
                                     height=20,
                                     font=('Century gothic', 13),
@@ -174,11 +172,11 @@ def movimentaEstoque_saida():
                                     placeholder_text='nome do produto',
                                     justify='center',
                                     corner_radius=10)
-    entry_produto.place(x=695, y=347, anchor=tkinter.CENTER)
-    entry_produto.get()
+    entry_produtoEntrada.place(x=695, y=347, anchor=tkinter.CENTER)
+    entry_produtoEntrada.get()
     
     # Criando e configurando a label quantidade
-    label_quantidadeEstoque = customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_quantidadeEstoque = customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="SAÍDA",
                                            font=('Poppins bold', 12),
                                            width=40,
@@ -187,8 +185,8 @@ def movimentaEstoque_saida():
                                            bg_color="transparent")
     label_quantidadeEstoque.place(x=592, y=400, anchor=tkinter.CENTER)
     
-    global entry_quantidade
-    entry_quantidade = customtkinter.CTkEntry(master=janela_SaidaProduto,
+    global entry_quantidadeEntrada
+    entry_quantidadeEntrada = customtkinter.CTkEntry(master=janela_EntradaProduto,
                                     width=250,
                                     height=20,
                                     font=('Century gothic', 13),
@@ -198,11 +196,11 @@ def movimentaEstoque_saida():
                                     placeholder_text='insira a quantidade',
                                     justify='center',
                                     corner_radius=10)
-    entry_quantidade.place(x=695, y=440, anchor=tkinter.CENTER)
-    entry_quantidade.get()
+    entry_quantidadeEntrada.place(x=695, y=440, anchor=tkinter.CENTER)
+    entry_quantidadeEntrada.get()
     
     # Criando e configurando a label quantidade
-    label_modeloestoque = customtkinter.CTkLabel(master=janela_SaidaProduto,
+    label_modeloestoque = customtkinter.CTkLabel(master=janela_EntradaProduto,
                                            text="MODELO",
                                            font=('Poppins bold', 12),
                                            width=40,
@@ -211,8 +209,8 @@ def movimentaEstoque_saida():
                                            bg_color="transparent")
     label_modeloestoque.place(x=170, y=400, anchor=tkinter.CENTER)
     
-    global entry_modelo
-    entry_modelo = customtkinter.CTkEntry(master=janela_SaidaProduto,
+    global entry_modeloEntrada
+    entry_modeloEntrada = customtkinter.CTkEntry(master=janela_EntradaProduto,
                                     width=250,
                                     height=20,
                                     font=('Century gothic', 13),
@@ -222,29 +220,29 @@ def movimentaEstoque_saida():
                                     placeholder_text='modelo do produto',
                                     justify='center',
                                     corner_radius=10)
-    entry_modelo.place(x=270, y=440, anchor=tkinter.CENTER)
-    entry_modelo.get()
+    entry_modeloEntrada.place(x=270, y=440, anchor=tkinter.CENTER)
+    entry_modeloEntrada.get()
     
     def armazenar_id():
-        global var_userselect, var_quantidade
-        var_userselect = entry_id.get()
+        global var_userselectEntrada
+        var_userselectEntrada = entry_id.get()
     armazenar_id
     
     def armazenar_qtd():
-        global var_quantidade
-        var_quantidade = entry_quantidade.get()
+        global var_quantidadeEntrada
+        var_quantidadeEntrada = entry_quantidadeEntrada.get()
     armazenar_qtd
     
     def cleaning_entry():
         entry_id.delete(0, "end")
-        entry_produto.delete(0, "end")
-        entry_modelo.delete(0, "end")
-        entry_quantidade.delete(0, "end")
+        entry_produtoEntrada.delete(0, "end")
+        entry_modeloEntrada.delete(0, "end")
+        entry_quantidadeEntrada.delete(0, "end")
     cleaning_entry
              
     
     # Criando e configurando o botão consultar
-    button_consultar = customtkinter.CTkButton(master=janela_SaidaProduto, text="",
+    button_consultar = customtkinter.CTkButton(master=janela_EntradaProduto, text="",
                                            width=15,
                                            height=15,
                                            font=('Poppins Bold', 10),
@@ -256,7 +254,7 @@ def movimentaEstoque_saida():
     button_consultar.place(x=420, y=345, anchor=tkinter.CENTER)
     button_consultar.configure( command=lambda:[armazenar_id(), query_ProdutoEntrada()])
     
-    button_clean = customtkinter.CTkButton(master=janela_SaidaProduto, text="",
+    button_clean = customtkinter.CTkButton(master=janela_EntradaProduto, text="",
                                            width=15,
                                            height=15,
                                            font=('Poppins Bold', 10),
@@ -269,7 +267,7 @@ def movimentaEstoque_saida():
     button_clean.configure(command=cleaning_entry)
     
     # Criando e configurando o botão cadastrar
-    button_cadastrar = customtkinter.CTkButton(master=janela_SaidaProduto, text="FINALIZAR",
+    button_cadastrar = customtkinter.CTkButton(master=janela_EntradaProduto, text="FINALIZAR",
                                             width=15,
                                             height=15,
                                             font=('Poppins Bold', 14),
@@ -281,8 +279,8 @@ def movimentaEstoque_saida():
     button_cadastrar.place(x=495, y=500, anchor=tkinter.CENTER)
 
     # Cadastrando as infomações do fornecedor no banco de dados
-    button_cadastrar.configure(command=lambda:[armazenar_qtd(), movimenta_saidaEstoque(), atualiza_tabela()])
+    button_cadastrar.configure(command=lambda:[armazenar_qtd(), movimenta_entradaEstoque(), atualiza_tabela()])
     
-    janela_SaidaProduto.mainloop()
+    janela_EntradaProduto.mainloop()
     
-movimentaEstoque_saida
+movimentaEstoque_entrada

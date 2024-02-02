@@ -9,9 +9,13 @@ from menu_paginas.cadastro_fornecedor import cad_fornecedor
 from menu_paginas.cadastro_fabricante import cad_fabricante
 from menu_paginas.cadastro_categoria import cad_categoria
 from menu_paginas.cadastro_subcategoria import cad_subcategoria
-from menu_paginas.estoque_entrada import entrada_estoque
+from menu_paginas.cadastro_produto import entrada_estoque
+from menu_paginas.entrada_estoque import movimentaEstoque_entrada
+from menu_paginas.saida_estoque import movimentaEstoque_saida
+from menu_paginas.relatorio_completo import relatorio_versaocompleta
+
 class Home(customtkinter.CTk):
-    def __init__(self):
+    def __init__(self):        
         super().__init__()
 
         self.title("Sistema de Inventário")
@@ -162,8 +166,8 @@ class Home(customtkinter.CTk):
         label_logo.pack()
         
         #Criando os botões no frame estoque
-        self.estoque_frame_Button_Entrada = customtkinter.CTkButton(self.estoque_frame, text="CADASTRO DE PRODUTO",
-                                                                        width=170,
+        self.estoque_frame_Button_Produto = customtkinter.CTkButton(self.estoque_frame, text="CADASTRO DE PRODUTO",
+                                                                        width=223,
                                                                         height=35,
                                                                         font=('Poppins Bold', 14),
                                                                         hover_color=co4,
@@ -172,25 +176,10 @@ class Home(customtkinter.CTk):
                                                                         bg_color=co0,
                                                                         fg_color=co0,
                                                                         cursor='hand2')
-        self.estoque_frame_Button_Entrada.place(x=387, y=170)
-        self.estoque_frame_Button_Entrada.configure(command = entrada_estoque)
+        self.estoque_frame_Button_Produto.place(x=387, y=200)
+        self.estoque_frame_Button_Produto.configure(command = entrada_estoque)
         
-        #self.estoque_frame_Button_Entrada.configure(command = )
-        
-        self.estoque_frame_Button_Saida = customtkinter.CTkButton(self.estoque_frame, text="ENTRADA",
-                                                                      width=170,
-                                                                      height=35,
-                                                                      font=('Poppins Bold', 14),
-                                                                      hover_color=co4,
-                                                                      border_width=2,
-                                                                      border_color=co0,
-                                                                      bg_color=co0,
-                                                                      fg_color=co0,
-                                                                      cursor='hand2')
-        self.estoque_frame_Button_Saida.place(x=387, y=260)
-        #self.estoque_frame_Button_Saida.configure(command = )
-
-        self.estoque_frame_Button_Exclusao = customtkinter.CTkButton(self.estoque_frame, text="SAÍDA",
+        self.estoque_frame_Button_Entrada = customtkinter.CTkButton(self.estoque_frame, text="MOVIMENTAÇÃO DE ENTRADA",
                                                                           width=170,
                                                                           height=35,
                                                                           font=('Poppins Bold', 14),
@@ -200,11 +189,59 @@ class Home(customtkinter.CTk):
                                                                           bg_color=co0,
                                                                           fg_color=co0,
                                                                           cursor='hand2')
-        self.estoque_frame_Button_Exclusao.place(x=387, y=350)
-        #self.cadastro_frame_Button_Sub_Categoria.configure(command = )
+        self.estoque_frame_Button_Entrada.place(x=387, y=275)
+        self.estoque_frame_Button_Entrada.configure(command = movimentaEstoque_entrada )
+        
+        self.estoque_frame_Button_Saida = customtkinter.CTkButton(self.estoque_frame, text="MOVIMENTAÇÃO DE SAÍDA",
+                                                                          width=223,
+                                                                          height=35,
+                                                                          font=('Poppins Bold', 14),
+                                                                          hover_color=co4,
+                                                                          border_width=2,
+                                                                          border_color=co0,
+                                                                          bg_color=co0,
+                                                                          fg_color=co0,
+                                                                          cursor='hand2')
+        self.estoque_frame_Button_Saida.place(x=387, y=350)
+        self.estoque_frame_Button_Saida.configure(command = movimentaEstoque_saida )
         
         # criando o frame relatorio
         self.relatorio_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
+        # Inserindo imagem de fundo relatório
+        label_logo = customtkinter.CTkLabel(self.relatorio_frame,
+                                    text="",
+                                    image=self.background_image)
+        label_logo.pack()
+        
+        #Criando o botão relatório completo
+        self.relatorio_frame_Button_Completo = customtkinter.CTkButton(self.relatorio_frame, text="COMPLETO",
+                                                                          width=170,
+                                                                          height=35,
+                                                                          font=('Poppins Bold', 14),
+                                                                          hover_color=co4,
+                                                                          border_width=2,
+                                                                          border_color=co0,
+                                                                          bg_color=co0,
+                                                                          fg_color=co0,
+                                                                          cursor='hand2')
+        self.relatorio_frame_Button_Completo.place(x=387, y=230)
+        self.relatorio_frame_Button_Completo.configure(command = relatorio_versaocompleta )
+                
+        #Criando o botão relatório personalizado
+        self.relatorio_frame_Button_Personalizado = customtkinter.CTkButton(self.relatorio_frame, text="PERSONALIZADO",
+                                                                          width=170,
+                                                                          height=35,
+                                                                          font=('Poppins Bold', 14),
+                                                                          hover_color=co4,
+                                                                          border_width=2,
+                                                                          border_color=co0,
+                                                                          bg_color=co0,
+                                                                          fg_color=co0,
+                                                                          cursor='hand2')
+        self.relatorio_frame_Button_Personalizado.place(x=387, y=310)
+        self.relatorio_frame_Button_Personalizado.configure(command = movimentaEstoque_entrada )
+        
+        
         
         # criando o frame suporte
         self.suporte_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")

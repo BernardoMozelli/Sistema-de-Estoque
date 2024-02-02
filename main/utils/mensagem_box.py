@@ -194,13 +194,22 @@ def msg_sucessoCadFornecedor():
 msg_sucessoCadFornecedor
 
 def msg_sucessoEntradaestoque():
- global show_sucesso_fornecedor
- show_sucesso_fornecedor = CTkMessagebox(
+ global show_sucesso_EntradaEstoque
+ show_sucesso_EntradaEstoque = CTkMessagebox(
         title="Cadastro de Produto",
-        message="Cadastro realizado com sucesso",
+        message="Cadastro realizado com sucesso!!!",
         icon="check", option_1="Ok",
         fade_in_duration=(2))
 msg_sucessoEntradaestoque
+
+def msg_sucessoSaidaEstoque():
+ global show_sucesso_SaidaEstoque
+ show_sucesso_SaidaEstoque = CTkMessagebox(
+        title="Movimentação de Saída de Produto",
+        message="Saída de produto do estoque foi realizada com sucesso!!!",
+        icon="check", option_1="Ok",
+        fade_in_duration=(2))
+msg_sucessoSaidaEstoque
 
 def msgErroCadastroCategoria():
  global show_erro_categoria
@@ -255,4 +264,49 @@ def msgErroEntradaestoque():
         icon="warning", option_1="Ok",
         fade_in_duration=(2))
 msgErroEntradaestoque
+
+def msgErroSaidaEstoque():
+ global show_erro_SaidaEstoque
+ show_erro_SaidaEstoque = CTkMessagebox(
+        title="Erro - Saida/Estoque",
+        message="Erro ao realizar a movimentação de saída do produto do estoque.Favor entrar em contato com a equipe de suporte",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msgErroSaidaEstoque
+
+def msgErroValidaSaidaEstoque():
+ global show_erro_validaSaidaEstoque
+ show_erro_validaSaidaEstoque = CTkMessagebox(
+        title="Saida/Estoque",
+        message="Erro ao realizar a movimentação de saída do produto do estoque. Favor preencher todos os campos!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msgErroValidaSaidaEstoque
+
+def msg_sucessoRelatorioCompleto():
+ global show_sucesso_RelatorioCompleto
+ show_sucesso_RelatorioCompleto = CTkMessagebox(
+        title="Relatório Completo",
+        message="Relatório gerado com sucesso!!!",
+        icon="check", option_1="Ok",
+        fade_in_duration=(2))
+msg_sucessoRelatorioCompleto
+
+def msgErroRelatorioCompleto():
+ global show_erro_RelatorioCompleto
+ show_erro_RelatorioCompleto = CTkMessagebox(
+        title="Saida/Estoque",
+        message="Ocorreu um erro ao tentar gerar o relatório. Favor entrar em contato com o suporte!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msgErroRelatorioCompleto
+
+def msgErroRelatorioCompletoEntry():
+ global show_erro_RelatorioCompletoEntry
+ show_erro_RelatorioCompletoEntry = CTkMessagebox(
+        title="Saida/Estoque",
+        message="Ocorreu um erro ao tentar gerar o relatório. Verifique as informações fornecidas e tente novamente!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msgErroRelatorioCompletoEntry
 

@@ -62,7 +62,7 @@ selected_subcategoria = [var_resultSubcategoria[0] for var_resultSubcategoria in
 def query_EntradaEstoque():
     #Inserindo dados do cadastro no banco de dados
     
-    from menu_paginas.estoque_entrada import var_nomevalida, var_validaseg, var_fabri, var_fornec, var_nomevalida, var_validamodelo, var_validadata, var_categoria, var_subcategoria, var_validanserie, var_validanota, var_validaquantidade, var_validavalor
+    from main.menu_paginas.cadastro_produto import var_nomevalida, var_validaseg, var_fabri, var_fornec, var_nomevalida, var_validamodelo, var_validadata, var_categoria, var_subcategoria, var_validanserie, var_condicao, var_validaquantidade, var_validavalor
     
     cursor = con.cursor()
     query_f = (("SELECT produto FROM cadastro_estoque WHERE produto ='{}'".format(var_nomevalida)))
@@ -76,8 +76,8 @@ def query_EntradaEstoque():
     if len(result) != 0:
         msgErroFabricanteExiste()
     else:
-     query_cad_produto = ("INSERT INTO cadastro_estoque (produto, quantidade, segmento, fabricante, modelo, fornecedor, categoria, valor_compra, sub_categoria, numero_notafiscal, data_compra, numero_serie) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
-     val = (var_nomevalida, var_validaquantidade, var_validaseg, var_fabri, var_validamodelo, var_fornec, var_categoria, var_validavalor, var_subcategoria, var_validanota, var_validadata, var_validanserie)
+     query_cad_produto = ("INSERT INTO cadastro_estoque (produto, quantidade, segmento, fabricante, modelo, fornecedor, categoria, valor_compra, sub_categoria, condicao, data_cadastro, numero_serie) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
+     val = (var_nomevalida, var_validaquantidade, var_validaseg, var_fabri, var_validamodelo, var_fornec, var_categoria, var_validavalor, var_subcategoria, var_condicao, var_validadata, var_validanserie)
      cursor.execute(query_cad_produto, val)
      con.commit()
      msg_sucessoEntradaestoque()
