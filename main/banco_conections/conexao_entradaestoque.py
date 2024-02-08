@@ -80,7 +80,7 @@ def atualizaFornecedor_banco():
     from menu_paginas.cadastro_produto import optionmenu_fornecedor
     from menu_paginas.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
         
-    #Query que retorna informações do banco para a combobox fabricante
+    #Query que retorna informações do banco para a combobox fornecedor
     cursor = con.cursor()
     sql = 'SELECT nome_fantasia FROM cadastro_fornecedores'
 
@@ -96,7 +96,7 @@ def atualizaCategoria_banco():
     from menu_paginas.cadastro_produto import optionmenu_categoria
     from menu_paginas.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
         
-    #Query que retorna informações do banco para a combobox fabricante
+    #Query que retorna informações do banco para a combobox categoria
     cursor = con.cursor()
     sql = 'SELECT categoria FROM cadastro_categorias'
 
@@ -112,7 +112,7 @@ def atualizaSubcategoria_banco():
     from menu_paginas.cadastro_produto import optionmenu_subcategoria
     from menu_paginas.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
         
-    #Query que retorna informações do banco para a combobox fabricante
+    #Query que retorna informações do banco para a combobox subcategoria
     cursor = con.cursor()
     sql = 'SELECT sub_categoria FROM cadastro_subcategoria'
 
