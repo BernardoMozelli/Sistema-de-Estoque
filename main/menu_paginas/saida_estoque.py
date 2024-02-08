@@ -39,18 +39,21 @@ def movimentaEstoque_saida():
     #value_titulo = ["ID", "PRODUTO", "QUANTIDADE", "SEGMENTO", "FABRICANTE", "FORNECEDOR", "MODELO"]
     
     frame_saida=customtkinter.CTkScrollableFrame(master=janela_SaidaProduto,orientation="vertical",
-                      width=800, height=200,
+                      width=1000, height=200,
                       bg_color="transparent",
                       fg_color="transparent",
                       corner_radius=30)
     frame_saida.pack(pady=40)
     
-        
     #Criando a treeview com os dados do banco
-    global table
-    table = CTkTable(master=frame_saida, column=7, hover_color=co3, values=selected)
-    table.configure(width=30,height=30)
-    table.pack(pady=0.30)
+    global table_saida
+    table_saida = CTkTable(master=frame_saida, column=7, hover_color=co3, justify="center", values=selected)
+    table_saida.edit_column(1, width=250 )
+    table_saida.edit_column(3, width=190 )
+    table_saida.edit_column(4, width=360)
+    table_saida.edit_column(5, width=380 )
+    table_saida.edit_column(6, width=200)
+    table_saida.pack(pady=0.30)
 
     #Criando e configurando a label ID
     label_id= customtkinter.CTkLabel(master=janela_SaidaProduto,
@@ -61,7 +64,7 @@ def movimentaEstoque_saida():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_id.place(x=140, y=57, anchor=tkinter.CENTER)
+    label_id.place(x=52, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label produto
     label_produto= customtkinter.CTkLabel(master=janela_SaidaProduto,
@@ -72,7 +75,7 @@ def movimentaEstoque_saida():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_produto.place(x=195, y=57, anchor=tkinter.CENTER)
+    label_produto.place(x=142, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label quantidade
     label_quantidade= customtkinter.CTkLabel(master=janela_SaidaProduto,
@@ -83,7 +86,7 @@ def movimentaEstoque_saida():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_quantidade.place(x=250, y=57, anchor=tkinter.CENTER)
+    label_quantidade.place(x=230, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label segmento
     label_segmento= customtkinter.CTkLabel(master=janela_SaidaProduto,
@@ -105,7 +108,7 @@ def movimentaEstoque_saida():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_fabricante.place(x=460, y=57, anchor=tkinter.CENTER)
+    label_fabricante.place(x=485, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label fornecedor
     label_fornecedor= customtkinter.CTkLabel(master=janela_SaidaProduto,
@@ -116,7 +119,7 @@ def movimentaEstoque_saida():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_fornecedor.place(x=700,y=57, anchor=tkinter.CENTER)
+    label_fornecedor.place(x=750,y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label modelo
     label_modelo= customtkinter.CTkLabel(master=janela_SaidaProduto,
@@ -127,8 +130,10 @@ def movimentaEstoque_saida():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_modelo.place(x=856, y=57, anchor=tkinter.CENTER)
+    label_modelo.place(x=925, y=57, anchor=tkinter.CENTER)
     
+    #----------------------------------------------------------------------------------------------------------
+    #Labels das entrys
     
     # Criando e configurando a label id
     label_id = customtkinter.CTkLabel(master=janela_SaidaProduto,

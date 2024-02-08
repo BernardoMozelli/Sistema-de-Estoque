@@ -36,18 +36,22 @@ def movimentaEstoque_entrada():
     customtkinter.CTkImage(dark_image=Image.open(
     os.path.join(image_path, "atualizar.png")), size=(17, 17))
         
-    frame_saida=customtkinter.CTkScrollableFrame(master=janela_EntradaProduto,orientation="vertical",
-                      width=800, height=200,
+    frame_entrada=customtkinter.CTkScrollableFrame(master=janela_EntradaProduto,orientation="vertical",
+                      width=1000, height=200,
                       bg_color="transparent",
                       fg_color="transparent",
                       corner_radius=30)
-    frame_saida.pack(pady=40)
+    frame_entrada.pack(pady=40)
     
         
     #Criando a treeview com os dados do banco
     global table_entrada
-    table_entrada = CTkTable(master=frame_saida, column=7, hover_color=co3, values=selected)
-    table_entrada.configure(width=30,height=30)
+    table_entrada = CTkTable(master=frame_entrada, column=7, hover_color=co3, justify="center", values=selected)
+    table_entrada.edit_column(1, width=250 )
+    table_entrada.edit_column(3, width=190 )
+    table_entrada.edit_column(4, width=360)
+    table_entrada.edit_column(5, width=380 )
+    table_entrada.edit_column(6, width=200)
     table_entrada.pack(pady=0.30)
 
     #Criando e configurando a label ID
@@ -59,7 +63,7 @@ def movimentaEstoque_entrada():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_id.place(x=140, y=57, anchor=tkinter.CENTER)
+    label_id.place(x=52, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label produto
     label_produto= customtkinter.CTkLabel(master=janela_EntradaProduto,
@@ -70,7 +74,7 @@ def movimentaEstoque_entrada():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_produto.place(x=195, y=57, anchor=tkinter.CENTER)
+    label_produto.place(x=142, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label quantidade
     label_quantidade= customtkinter.CTkLabel(master=janela_EntradaProduto,
@@ -81,7 +85,7 @@ def movimentaEstoque_entrada():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_quantidade.place(x=250, y=57, anchor=tkinter.CENTER)
+    label_quantidade.place(x=230, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label segmento
     label_segmento= customtkinter.CTkLabel(master=janela_EntradaProduto,
@@ -103,7 +107,7 @@ def movimentaEstoque_entrada():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_fabricante.place(x=460, y=57, anchor=tkinter.CENTER)
+    label_fabricante.place(x=485, y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label fornecedor
     label_fornecedor= customtkinter.CTkLabel(master=janela_EntradaProduto,
@@ -114,7 +118,7 @@ def movimentaEstoque_entrada():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_fornecedor.place(x=700,y=57, anchor=tkinter.CENTER)
+    label_fornecedor.place(x=750,y=57, anchor=tkinter.CENTER)
     
     #Criando e configurando a label modelo
     label_modelo= customtkinter.CTkLabel(master=janela_EntradaProduto,
@@ -125,7 +129,11 @@ def movimentaEstoque_entrada():
                                            fg_color="transparent",
                                            corner_radius=7,
                                            bg_color="transparent")
-    label_modelo.place(x=856, y=57, anchor=tkinter.CENTER)
+    label_modelo.place(x=925, y=57, anchor=tkinter.CENTER)
+    
+    #---------------------------------------------------------------------------------------------------------------------
+    
+    #Configurando as labels das entrys
     
     
     # Criando e configurando a label id

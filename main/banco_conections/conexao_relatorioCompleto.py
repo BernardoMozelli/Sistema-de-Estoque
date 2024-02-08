@@ -9,7 +9,7 @@ from banco_conections.conexao import con
 
 global selected_relatorioC
 cursor = con.cursor()
-sql = 'SELECT * FROM cadastro_estoque ORDER BY ID'
+sql = 'SELECT ID, produto, quantidade, segmento, fabricante, fornecedor, modelo FROM cadastro_estoque ORDER BY ID'
 
 cursor = con.cursor()
 cursor.execute(sql)
