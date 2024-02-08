@@ -194,8 +194,8 @@ def msg_sucessoCadFornecedor():
 msg_sucessoCadFornecedor
 
 def msg_sucessoEntradaestoque():
- global show_sucesso_EntradaEstoque
- show_sucesso_EntradaEstoque = CTkMessagebox(
+ global showsucesso_EntradaEstoque
+ showsucesso_EntradaEstoque = CTkMessagebox(
         title="Cadastro de Produto",
         message="Cadastro realizado com sucesso!!!",
         icon="check", option_1="Ok",

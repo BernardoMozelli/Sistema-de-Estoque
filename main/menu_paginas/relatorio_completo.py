@@ -17,8 +17,7 @@ import warnings
 from .CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
 
 def relatorio_versaocompleta():
-    
-    from banco_conections.conexao_saidaEstoque import selected, query_ProdutoEntrada, movimenta_saidaEstoque, atualiza_tabela
+    from banco_conections.conexao_relatorioCompleto import selected_relatorioC
     Janela_relatorioCompleto = customtkinter.CTkToplevel()
     Janela_relatorioCompleto.attributes("-topmost", True)
     Janela_relatorioCompleto.after(200, lambda: Janela_relatorioCompleto.iconbitmap("./imagens/logo_icone.ico")) # alterando o icone da janela
@@ -49,10 +48,11 @@ def relatorio_versaocompleta():
                       corner_radius=30)
     frame_saida.pack(pady=40)
     
+    #---------------------------------------------------------------------------------------------------------------------
         
     #Criando a treeview com os dados do banco
     global table
-    table = CTkTable(master=frame_saida, column=7, hover_color=co3, values=selected)
+    table = CTkTable(master=frame_saida, column=7, hover_color=co3, values=selected_relatorioC)
     table.configure(width=30,height=30)
     table.pack(pady=0.30)
 
@@ -88,8 +88,52 @@ def relatorio_versaocompleta():
                                            corner_radius=7,
                                            bg_color="transparent")
     label_quantidade.place(x=250, y=57, anchor=tkinter.CENTER)
+        
+    #Criando e configurando a label segmento
+    label_segmento= customtkinter.CTkLabel(master=Janela_relatorioCompleto,
+                                           text="SEGMENTO",
+                                           font=('Poppins bold', 12),
+                                           width=13,
+                                           height=20,
+                                           fg_color="transparent",
+                                           corner_radius=7,
+                                           bg_color="transparent")
+    label_segmento.place(x=305, y=57, anchor=tkinter.CENTER)
     
-    #-----------------------------------------------------------------------------------------------------------------------------
+    #Criando e configurando a label fabricante
+    label_fabricante= customtkinter.CTkLabel(master=Janela_relatorioCompleto,
+                                           text="FABRICANTE",
+                                           font=('Poppins bold', 12),
+                                           width=50,
+                                           height=20,
+                                           fg_color="transparent",
+                                           corner_radius=7,
+                                           bg_color="transparent")
+    label_fabricante.place(x=460, y=57, anchor=tkinter.CENTER)
+    
+    #Criando e configurando a label fornecedor
+    label_fornecedor= customtkinter.CTkLabel(master=Janela_relatorioCompleto,
+                                           text="FORNECEDOR",
+                                           font=('Poppins bold', 12),
+                                           width=50,
+                                           height=20,
+                                           fg_color="transparent",
+                                           corner_radius=7,
+                                           bg_color="transparent")
+    label_fornecedor.place(x=700,y=57, anchor=tkinter.CENTER)
+    
+    #Criando e configurando a label modelo
+    label_modelo= customtkinter.CTkLabel(master=Janela_relatorioCompleto,
+                                           text="MODELO",
+                                           font=('Poppins bold', 12),
+                                           width=50,
+                                           height=20,
+                                           fg_color="transparent",
+                                           corner_radius=7,
+                                           bg_color="transparent")
+    label_modelo.place(x=856, y=57, anchor=tkinter.CENTER)
+    
+    #----------------------------------------------------------------------------------------------------------------------------
     
     # Criando e configurando a label id
     label_pastaDestino = customtkinter.CTkLabel(master=Janela_relatorioCompleto,

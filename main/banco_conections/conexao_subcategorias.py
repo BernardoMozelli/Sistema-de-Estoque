@@ -29,13 +29,30 @@ cursor.execute(sql)
 result_categoria = cursor.fetchall() # resultado da query
 
 var_resultC = [result_categoria[0] for result_categoria in result_categoria]
+#--------------------------------------------------------------------------------------
+
+def categoriaAtualizaSelect():
+    from menu_paginas.cadastro_subcategoria import combo_categoria
+    global result_categoria, var_resultC
+    cursor = con.cursor()
+    sql = 'SELECT categoria FROM cadastro_categorias'
+
+    cursor = con.cursor()
+    cursor.execute(sql)
+
+    result_categoria = cursor.fetchall() # resultado da query
+
+    var_resultC = [result_categoria[0] for result_categoria in result_categoria]
+    combo_categoria.configure(values=var_resultC)
+categoriaAtualizaSelect
+    
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def query_subcategoria():
     from menu_paginas.cadastro_subcategoria import var_subcategoria
     cursor = con.cursor()
-    query_sc = (("SELECT nome FROM cadastro_subcategoria WHERE nome ='{}'".format(var_subcategoria)))
+    query_sc = (("SELECT sub_categoria FROM cadastro_subcategoria WHERE sub_categoria ='{}'".format(var_subcategoria)))
     cursor.execute(query_sc)
     result = cursor.fetchall()
  
@@ -53,7 +70,7 @@ def query_subcategoria():
      string_categoria = " ".join(var_resultC)
         
      #Insere as informações no banco de dados
-     query_cad_subcategoria = ("INSERT INTO cadastro_subcategoria (segmento, categoria, nome) VALUES (%s, %s, %s)")
+     query_cad_subcategoria = ("INSERT INTO cadastro_subcategoria (segmento, categoria, sub_categoria) VALUES (%s, %s, %s)")
      val = (string_segmento, string_categoria, var_subcategoria)
      cursor.execute(query_cad_subcategoria, val)
      con.commit()

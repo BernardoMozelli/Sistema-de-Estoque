@@ -12,6 +12,7 @@ from PIL import ImageTk, Image
 
 
 def cad_fabricante():
+    from banco_conections.conexao_entradaestoque import atualizaFabricante_banco
     janela_fabricante = customtkinter.CTkToplevel()
     janela_fabricante.attributes("-topmost", True)
     janela_fabricante.after(200, lambda: janela_fabricante.iconbitmap("./imagens/logo_icone.ico")) # alterando o icone da janela

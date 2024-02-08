@@ -17,9 +17,9 @@ def valida_cadastroCategoria():
 valida_cadastroCategoria
 
 def query_categoria():
-    from menu_paginas.cadastro_categoria import var_combobox, var_categoria
+    from menu_paginas.cadastro_categoria import var_optionmenucategoria, var_categoria
     cursor = con.cursor()
-    query_c = (("SELECT segmento, categoria FROM cadastro_categorias WHERE segmento ='{}' and categoria ='{}'".format(var_combobox, var_categoria)))
+    query_c = (("SELECT segmento, categoria FROM cadastro_categorias WHERE segmento ='{}' and categoria ='{}'".format(var_optionmenucategoria, var_categoria)))
     cursor.execute(query_c)
     result = cursor.fetchall() 
  
@@ -31,7 +31,7 @@ def query_categoria():
     else:
      #Insere as informações no banco de dados
      query_cad_categoria = ("INSERT INTO cadastro_categorias (segmento, categoria) VALUES (%s, %s)")
-     val = (var_combobox,var_categoria)
+     val = (var_optionmenucategoria,var_categoria)
      cursor.execute(query_cad_categoria, val)
      con.commit()
 

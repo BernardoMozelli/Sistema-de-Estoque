@@ -33,7 +33,6 @@ def query_fabricante():
      query_cad_fabricante = ("INSERT INTO cadastro_fabricante (cnpj, nome_fantasia, razao_social, cep, endereco, complemento, bairro, cidade_estado, status, telefone) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
      val = (var_cnpj, var_nome, var_razao, var_cep, var_logradouro, var_complemento, var_bairro, var_cidade_estado, var_status, var_telefone)
      cursor.execute(query_cad_fabricante, val)
-     con.commit()
      msg_sucessoCadFornecedor()
      
 query_fabricante

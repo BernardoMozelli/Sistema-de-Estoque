@@ -59,10 +59,76 @@ selected_subcategoria = [var_resultSubcategoria[0] for var_resultSubcategoria in
 
 #-----------------------------------------------------------------------------------------------------
 
+#Atualiza o select da coluna fabricante
+def atualizaFabricante_banco():
+    from menu_paginas.cadastro_produto import optionmenu_fabricante
+    from menu_paginas.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
+        
+    #Query que retorna informações do banco para a combobox fabricante
+    cursor = con.cursor()
+    sql = 'SELECT nome_fantasia FROM cadastro_fabricante'
+
+    cursor = con.cursor()
+    cursor.execute(sql)
+
+    var_resultfabricante = cursor.fetchall() # resultado da query
+    selected_fabricante = [var_resultfabricante[0] for var_resultfabricante in var_resultfabricante] 
+    CTkScrollableDropdown(optionmenu_fabricante, values=selected_fabricante)
+atualizaFabricante_banco
+
+def atualizaFornecedor_banco():
+    from menu_paginas.cadastro_produto import optionmenu_fornecedor
+    from menu_paginas.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
+        
+    #Query que retorna informações do banco para a combobox fabricante
+    cursor = con.cursor()
+    sql = 'SELECT nome_fantasia FROM cadastro_fornecedores'
+
+    cursor = con.cursor()
+    cursor.execute(sql)
+
+    var_resultfornecedor = cursor.fetchall() # resultado da query
+    selected_fornecedor = [var_resultfornecedor[0] for var_resultfornecedor in var_resultfornecedor] 
+    CTkScrollableDropdown(optionmenu_fornecedor, values=selected_fornecedor)
+atualizaFornecedor_banco
+
+def atualizaCategoria_banco():
+    from menu_paginas.cadastro_produto import optionmenu_categoria
+    from menu_paginas.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
+        
+    #Query que retorna informações do banco para a combobox fabricante
+    cursor = con.cursor()
+    sql = 'SELECT categoria FROM cadastro_categorias'
+
+    cursor = con.cursor()
+    cursor.execute(sql)
+
+    var_resultcategoria = cursor.fetchall() # resultado da query
+    selected_categoria = [var_resultcategoria[0] for var_resultcategoria in var_resultcategoria] 
+    CTkScrollableDropdown(optionmenu_categoria, values=selected_categoria)
+atualizaCategoria_banco
+
+def atualizaSubcategoria_banco():
+    from menu_paginas.cadastro_produto import optionmenu_subcategoria
+    from menu_paginas.CTkScrollableDropdown.ctk_scrollable_dropdown import CTkScrollableDropdown
+        
+    #Query que retorna informações do banco para a combobox fabricante
+    cursor = con.cursor()
+    sql = 'SELECT sub_categoria FROM cadastro_subcategoria'
+
+    cursor = con.cursor()
+    cursor.execute(sql)
+
+    var_resultSubcategoria = cursor.fetchall() # resultado da query
+    selected_subcategoria = [var_resultSubcategoria[0] for var_resultSubcategoria in var_resultSubcategoria] 
+    CTkScrollableDropdown(optionmenu_subcategoria, values=selected_subcategoria)
+atualizaSubcategoria_banco
+    
+
 def query_EntradaEstoque():
     #Inserindo dados do cadastro no banco de dados
     
-    from main.menu_paginas.cadastro_produto import var_nomevalida, var_validaseg, var_fabri, var_fornec, var_nomevalida, var_validamodelo, var_validadata, var_categoria, var_subcategoria, var_validanserie, var_condicao, var_validaquantidade, var_validavalor
+    from menu_paginas.cadastro_produto import var_nomevalida, var_validaseg, var_fabri, var_fornec, var_nomevalida, var_validamodelo, var_validadata, var_categoria, var_subcategoria, var_validanserie, var_condicao, var_validaquantidade, var_validavalor
     
     cursor = con.cursor()
     query_f = (("SELECT produto FROM cadastro_estoque WHERE produto ='{}'".format(var_nomevalida)))
@@ -79,9 +145,9 @@ def query_EntradaEstoque():
      query_cad_produto = ("INSERT INTO cadastro_estoque (produto, quantidade, segmento, fabricante, modelo, fornecedor, categoria, valor_compra, sub_categoria, condicao, data_cadastro, numero_serie) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
      val = (var_nomevalida, var_validaquantidade, var_validaseg, var_fabri, var_validamodelo, var_fornec, var_categoria, var_validavalor, var_subcategoria, var_condicao, var_validadata, var_validanserie)
      cursor.execute(query_cad_produto, val)
-     con.commit()
      msg_sucessoEntradaestoque()
-     
+
+     con.commit()     
 query_EntradaEstoque
     
     

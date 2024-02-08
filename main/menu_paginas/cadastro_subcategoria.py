@@ -5,10 +5,9 @@ from utils.layout.front import *
 import os
 from banco_conections.conexao import *
 from PIL import ImageTk, Image
-from banco_conections.conexao_subcategorias import var_result, var_resultC
 
 def cad_subcategoria():
-    from banco_conections.conexao_subcategorias import query_subcategoria
+    from banco_conections.conexao_subcategorias import var_result, var_resultC,categoriaAtualizaSelect, query_subcategoria
     janela_subcategoria = customtkinter.CTkToplevel()
     janela_subcategoria.attributes("-topmost", True)
     janela_subcategoria.title("Cadastro de Sub-Categoria")
@@ -60,9 +59,10 @@ def cad_subcategoria():
     label_combocategoria.place(x=678, y=150, anchor=tkinter.CENTER)
 
     #Caixa para selecionar a categoria
-    global var_Ccategoria
+    global combo_categoria, var_Ccategoria
     combo_categoria = customtkinter.CTkOptionMenu(master=janela_subcategoria,
                                        values=var_resultC)
+    categoriaAtualizaSelect
     combo_categoria.configure(fg_color=co0, width=180, height=30)
     combo_categoria.place(x=687, y=183, anchor=tkinter.CENTER)
     var_Ccategoria = combobox.get()
@@ -98,6 +98,8 @@ def cad_subcategoria():
     def clean_entrys():
         entry_subcategoria.delete(0, "end")
     clean_entrys
+    
+    #Criando botão para atualizar consulta do banco
     
     
     # Criando e configurando o botão cadastrar
