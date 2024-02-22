@@ -13,6 +13,7 @@ from menu_paginas.cadastro_produto import entrada_estoque
 from menu_paginas.entrada_estoque import movimentaEstoque_entrada
 from menu_paginas.saida_estoque import movimentaEstoque_saida
 from menu_paginas.relatorio_completo import relatorio_versaocompleta
+from menu_paginas.suporte import suporte_chat
 
 class Home(customtkinter.CTk):
     def __init__(self):        
@@ -72,12 +73,12 @@ class Home(customtkinter.CTk):
         
         self.relatorio_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Relatório",
                                                       fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
-                                                      image=self.relatorio_image, anchor="w", command=self.relatorio_button_event)
+                                                      image=self.relatorio_image, anchor="w", command=lambda:[self.relatorio_button_event(), relatorio_versaocompleta()])
         self.relatorio_button.grid(row=5, column=0, sticky="ew")
         
         self.suporte_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Suporte",
                                                       fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
-                                                      image=self.chat_image, anchor="w", command=self.suporte_button_event)
+                                                      image=self.chat_image, anchor="w", command=lambda:[self.suporte_button_event, suporte_chat()])
         self.suporte_button.grid(row=6, column=0, sticky="ew")
         
 
@@ -212,36 +213,6 @@ class Home(customtkinter.CTk):
                                     text="",
                                     image=self.background_image)
         label_logo.pack()
-        
-        #Criando o botão relatório completo
-        self.relatorio_frame_Button_Completo = customtkinter.CTkButton(self.relatorio_frame, text="COMPLETO",
-                                                                          width=170,
-                                                                          height=35,
-                                                                          font=('Poppins Bold', 14),
-                                                                          hover_color=co4,
-                                                                          border_width=2,
-                                                                          border_color=co0,
-                                                                          bg_color=co0,
-                                                                          fg_color=co0,
-                                                                          cursor='hand2')
-        self.relatorio_frame_Button_Completo.place(x=387, y=230)
-        self.relatorio_frame_Button_Completo.configure(command = relatorio_versaocompleta )
-                
-        #Criando o botão relatório personalizado
-        self.relatorio_frame_Button_Personalizado = customtkinter.CTkButton(self.relatorio_frame, text="PERSONALIZADO",
-                                                                          width=170,
-                                                                          height=35,
-                                                                          font=('Poppins Bold', 14),
-                                                                          hover_color=co4,
-                                                                          border_width=2,
-                                                                          border_color=co0,
-                                                                          bg_color=co0,
-                                                                          fg_color=co0,
-                                                                          cursor='hand2')
-        self.relatorio_frame_Button_Personalizado.place(x=387, y=310)
-        self.relatorio_frame_Button_Personalizado.configure(command = movimentaEstoque_entrada )
-        
-        
         
         # criando o frame suporte
         self.suporte_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
