@@ -1,6 +1,26 @@
 from CTkMessagebox import CTkMessagebox
 import sys
 
+#Mensagem login
+def msg_loginErro():
+  global show_LoginErro
+  show_LoginErro = CTkMessagebox(
+        title="Login - Erro",
+        message="Nome do Usuário ou senha incorreto. Tente novamente!!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+msg_loginErro
+
+def msg_loginSucesso():
+  global show_LoginSucesso
+  show_LoginSucesso = CTkMessagebox(
+        title="Login",
+        message="Login realizado com sucesso !!!",
+        icon="check", option_1="Ok",
+        fade_in_duration=(2))
+msg_loginErro
+
+
 #Mensagem cadastro de usuário
 def msg_aviso1():
   global show_aviso1
@@ -309,4 +329,14 @@ def msgErroRelatorioCompletoEntry():
         icon="warning", option_1="Ok",
         fade_in_duration=(2))
 msgErroRelatorioCompletoEntry
+
+def erro_email():
+ global show_errorEmail
+ show_errorEmail = CTkMessagebox(
+        title="Erro",
+        message="O e-mail informado não foi encontrado em nossa base de dados!!",
+        icon="warning", option_1="Ok",
+        fade_in_duration=(2))
+erro_email
+
 

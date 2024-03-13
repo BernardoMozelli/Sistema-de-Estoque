@@ -22,7 +22,7 @@ template_html = '''
         </div>
                   
         <div align="center">
-          <a href="http://localhost:8000/" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block; text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color:#1f538d; border-radius: 3px;-webkit-border-radius: 3px; -moz-border-radius: 3px; width:20%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;font-size: 14px;">
+          <a href="http://localhost/sistema_inventario/index.php" target="_blank" class="v-button v-size-width" style="box-sizing: border-box;display: inline-block; text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color:#1f538d; border-radius: 3px;-webkit-border-radius: 3px; -moz-border-radius: 3px; width:20%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;font-size: 14px;">
              <span style="display:block;padding:15px 20px 10px;line-height:-40%;"><strong>REDEFINIR</strong></span>
           </a>
         </div>

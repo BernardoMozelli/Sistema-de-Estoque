@@ -9,14 +9,13 @@ import json
 from PIL import ImageTk, Image
 from datetime import date
 
-
 def suporte_chat():
+    from utils.mail_ticketSuporte import consulta_mail, mail_suporteTicket, mail_suporteTicketUser
     
     janela_suporte = customtkinter.CTkToplevel()
     janela_suporte.attributes("-topmost", True)
     janela_suporte.after(200, lambda: janela_suporte.iconbitmap("./imagens/logo_icone.ico")) # alterando o icone da janela
     janela_suporte.title("Entrada em estoque")
-    #janela_suporte.geometry("1000x550+250+70")
     janela_suporte.resizable(False, False)
     janela_suporte.grid_rowconfigure(0, weight=1)
     janela_suporte.grid_columnconfigure(1, weight=1)
@@ -33,7 +32,7 @@ def suporte_chat():
                                           image=background_image)
     label_background.pack()
 
-    # Criando e configurando a label nome
+    # Criando e configurando a label titulo
     label_titulo = customtkinter.CTkLabel(master=janela_suporte,
                                     text="TÍTULO",
                                     font=('Poppins bold', 13),
@@ -43,7 +42,7 @@ def suporte_chat():
                                     bg_color="transparent")
     label_titulo.place(x=247, y=76, anchor=tkinter.CENTER)
 
-    # Criando e configurando a entry nome do produto
+    # Criando e configurando a entry título
     entry_título= customtkinter.CTkEntry(master=janela_suporte,
                                     width=300,
                                     height=25,
@@ -56,33 +55,28 @@ def suporte_chat():
                                     corner_radius=10)
     entry_título.place(x=375, y=105, anchor=tkinter.CENTER)
     
-    # Criando e configurando a label nome
-    label_data = customtkinter.CTkLabel(master=janela_suporte,
-                                    text="DATA",
+    #Criando a label e-mail
+    label_email= customtkinter.CTkLabel(master=janela_suporte,
+                                    text="E-MAIL",
                                     font=('Poppins bold', 13),
                                     width=40,
                                     height=20,
                                     fg_color=co4,
                                     bg_color="transparent")
-    label_data.place(x=646, y=75, anchor=tkinter.CENTER)
-
-    # Criando e configurando a entry nome do produto
-    entry_data= customtkinter.CTkEntry(master=janela_suporte,
+    label_email.place(x=648, y=75, anchor=tkinter.CENTER)
+    
+    # Criando e configurando a entry email
+    entry_email= customtkinter.CTkEntry(master=janela_suporte,
                                     width=300,
                                     height=25,
                                     font=('Century gothic', 13),
                                     fg_color="transparent",
                                     bg_color="transparent",
+                                    placeholder_text='Insira o e-mail cadastrado',
                                     border_color=co0,
                                     justify='center',
                                     corner_radius=10)
-    entry_data.place(x=775, y=105, anchor=tkinter.CENTER)
-    
-    data = date.today()
-    dataFormatada = data.strftime('%d/%m/%Y')
-    
-    entry_data.insert(0, dataFormatada)
-
+    entry_email.place(x=775, y=105, anchor=tkinter.CENTER) 
     
     # Criando e configurando a label mensagem
     label_mensagem = customtkinter.CTkLabel(master=janela_suporte,
@@ -92,14 +86,22 @@ def suporte_chat():
                                     height=20,
                                     fg_color=co4,
                                     bg_color="transparent")
-    label_mensagem.place(x=575, y=175, anchor=tkinter.CENTER)
+    label_mensagem.place(x=575, y=190, anchor=tkinter.CENTER)
     
     # Criando o caixa de texto
-    textbox = ctk.CTkTextbox(janela_suporte, width=620, height=200, activate_scrollbars=True)
-    textbox.configure(bg_color=co0,
+    mensagem_suporte = ctk.CTkTextbox(janela_suporte, width=420, height=150, activate_scrollbars=True)
+    mensagem_suporte.configure(bg_color=co0,
                       fg_color=co0)
-    textbox.pack()
-    textbox.place(x=575, y=297, anchor=tkinter.CENTER)
+    mensagem_suporte.pack()
+    mensagem_suporte.place(x=575, y=295, anchor=tkinter.CENTER)
+    
+    def armazenar_suporte():
+        global var_titulo, var_data, var_mail, var_mensagem
+        
+        var_titulo = entry_título.get()
+        var_mail = entry_email.get()
+        var_mensagem = mensagem_suporte.get(0.0, 'end')
+    armazenar_suporte
 
     # Criando e configurando o botão cadastrar
     button_suporte = customtkinter.CTkButton(master=janela_suporte, text="ENVIAR MENSAGEM",
@@ -111,7 +113,8 @@ def suporte_chat():
                                             bg_color=co4,
                                             cursor='hand2')
 
-    button_suporte.place(x=585, y=450, anchor=tkinter.CENTER)
+    button_suporte.place(x=585, y=400, anchor=tkinter.CENTER)
+    button_suporte.configure(command=lambda:[armazenar_suporte(), consulta_mail(), mail_suporteTicket(), mail_suporteTicketUser()])
 
     # Cadastrando as infomações do fornecedor no banco de dados
     #button_entradaestoque.configure(command=lambda:[armazenar_estoque(), valida_entradaestoque(), query_EntradaEstoque(), cleaning_entry()])
