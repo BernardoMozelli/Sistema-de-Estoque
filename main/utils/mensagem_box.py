@@ -335,8 +335,29 @@ def erro_email():
  show_errorEmail = CTkMessagebox(
         title="Erro",
         message="O e-mail informado não foi encontrado em nossa base de dados!!",
+        icon="warning", option_1="Ok")
+erro_email
+
+def erro_Envioemail():
+ global show_errorEnvioEmail
+ show_errorEnvioEmail = CTkMessagebox(
+        title="Erro",
+        message="Ocorreu um erro ao tentar realizar o registro do seu chamado. Tente novamente mais tarde.",
         icon="warning", option_1="Ok",
         fade_in_duration=(2))
-erro_email
+erro_Envioemail
+
+def email_sucessoTicket():
+ global show_EmailSucesso
+ show_EmailSucesso = CTkMessagebox(
+        title="E-mail enviado",
+        message="Ticket aberto com sucesso. Favor acompanhar as atualizações de seu atendimento através do e-mail cadastrado.",
+        icon="check", option_1="Ok",
+        fade_in_duration=(2))
+email_sucessoTicket
+
+ 
+ 
+    
 
 

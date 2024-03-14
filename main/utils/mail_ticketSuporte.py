@@ -76,8 +76,9 @@ def consulta_mail():
   global resultado_ConsultaMail
   resultado_ConsultaMail = cursor.fetchall()
   
-  if len(resultado_ConsultaMail)==0:
+  while len(resultado_ConsultaMail)==0:
     erro_email()
+    return var_mail
   
 consulta_mail
 
@@ -127,5 +128,12 @@ def mail_suporteTicketUser():
     server.login(login, password)
     server.sendmail(
         sender_email, receiver_email, message.as_string()
+              
     )
+        
+    if not server is  True:
+      email_sucessoTicket()
+    else:
+        erro_Envioemail()
+        
 mail_suporteTicketUser
